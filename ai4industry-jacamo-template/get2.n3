@@ -1,0 +1,69 @@
+@prefix ex: <http://ex.com/> .
+@prefix http: <http://www.w3.org/2011/http#> .
+@prefix httpm: <http://www.w3.org/2011/http-methods#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> . # RDFS
+
+{
+	[] http:mthd httpm:GET ;
+		http:requestURI <https://ci.mines-stetienne.fr/kg/ontology> .
+}
+{
+	[] http:mthd httpm:GET ;
+		http:requestURI <https://ci.mines-stetienne.fr/triplestore/kg1/> .
+}
+{
+	[] http:mthd httpm:GET ;
+		http:requestURI <https://ci.mines-stetienne.fr/triplestore/kg2/> .
+}
+{
+	[] http:mthd httpm:GET ;
+		http:requestURI <https://ci.mines-stetienne.fr/triplestore/kg3/> .
+}
+{
+	[] http:mthd httpm:GET ;
+		http:requestURI <https://ci.mines-stetienne.fr/triplestore/kg4/> .
+}
+{
+	[] http:mthd httpm:GET ;
+		http:requestURI <https://ci.mines-stetienne.fr/triplestore/kg5/> .
+}
+{
+	[] http:mthd httpm:GET ;
+		http:requestURI <https://ci.mines-stetienne.fr/triplestore/kg6/> .
+}
+{
+	[] http:mthd httpm:GET ;
+		http:requestURI <https://ci.mines-stetienne.fr/triplestore/kg7/> .
+}
+{
+	[] http:mthd httpm:GET ;
+		http:requestURI <https://ci.mines-stetienne.fr/triplestore/kg8/> .
+}
+{
+	[] http:mthd httpm:GET ;
+		http:requestURI <http://yggdrasil.interactions.ics.unisg.ch/environments/61/workspaces/102/artifacts/leubot1-3d> .
+}
+{
+	[] http:mthd httpm:GET ;
+		http:requestURI <http://yggdrasil.interactions.ics.unisg.ch/environments/61/workspaces/102/artifacts/leubot2-3d> .
+}
+
+
+# Rules
+{
+	?thing a ?class .
+	?class rdfs:subClassOf ?superClass .
+}
+=>
+{
+	?thing a ?superClass .
+} .
+
+{
+	?subClass rdfs:subClassOf ?class .
+	?class rdfs:subClassOf ?superClass .
+}
+=>
+{
+	?subClass rdfs:subClassOf ?superClass .
+} .
