@@ -23,12 +23,12 @@ repositories {
     // artifact repository for Linked-Data-Fu
     maven { url 'https://paul.ti.rw.fau.de/maven/repository/' }
 
-    // to retrieve the Hypermedea framework (snapshot releases)
+    // used for locally publishing hypermedea
     mavenLocal()
 }
 
 dependencies {
-    compile group: 'org.jacamo', name: 'hypermedia-jacamo', version: '0.1'
+    compile group: 'org.hypermedea', name: 'hypermedea', version: '0.1'
     compile group: 'org.jacamo', name: 'jacamo-rest', version: '0.6-SNAPSHOT'
 }
 
