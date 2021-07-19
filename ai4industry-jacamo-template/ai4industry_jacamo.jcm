@@ -23,7 +23,7 @@ mas ai4industry_jacamo {
 
     // Agent acquiring the KG with the ldfu_spider artifact
     agent ldfu_spider {
-          beliefs: base("https://ci.mines-stetienne.fr/kg8/")
+          beliefs: base("https://ci.mines-stetienne.fr/kg/")
           goals: start // initial goal. Comment to make agent inactive
           join: test_ldfu
           focus: test_ldfu.ldfu_spider
@@ -34,7 +34,7 @@ mas ai4industry_jacamo {
 
    agent leubot_agent {
           beliefs:  name(leubot1) // name of the controlled robotic arm
-                    base("https://ci.mines-stetienne.fr/kg8/") // node where to find the index.ttl
+                    base("https://ci.mines-stetienne.fr/kg/") // node where to find the index.ttl
                     api_key("KEYAPIS") // api key for using the leubot robot. Fix it
           goals: start // initial goal. Comment to make agent inactive
           join: test_ldfu
@@ -43,7 +43,7 @@ mas ai4industry_jacamo {
 
    // Agent for providing cups and packages
     agent cup_provider {
-          beliefs: base("https://ci.mines-stetienne.fr/kg8/") // node where to find the index.ttl
+          beliefs: base("https://ci.mines-stetienne.fr/kg/") // node where to find the index.ttl
                     name(cupProvider) // name of the controled thing
           goals: start // initial goal. Comment to make agent inactive
           join: test_ldfu
@@ -52,7 +52,7 @@ mas ai4industry_jacamo {
 
     // Agent for providing cups and packages
      agent dairy_product_provider {
-           beliefs:   base("https://ci.mines-stetienne.fr/kg8/") // node where to find the index.ttl
+           beliefs:   base("https://ci.mines-stetienne.fr/kg/") // node where to find the index.ttl
                      name(dairyProductProvider) // name of the controled thing
            goals: start // initial goal. Comment to make agent inactive
            join: test_ldfu
@@ -62,7 +62,7 @@ mas ai4industry_jacamo {
     workspace test_ldfu  { // workspace where the artifact ldfu_spider is created
           // creates Linked-Data-Fu spider, that will crawl the KG as
           // specified in the Linked Data program "get.n3"
-          artifact ldfu_spider :      tools.LinkedDataFuSpider("get.n3")
+          artifact ldfu_spider :      org.hypermedea.LinkedDataFuSpider("get.n3")
     }
 
     //This is for the use of JaCaMoRest for communication among agents

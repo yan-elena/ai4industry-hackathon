@@ -37,9 +37,9 @@ location_packaging([0.5,0.5,0.2]). // relative position of packaging workshop
     .print("Found suitable RobotArm : ", Thing) ;
     // To also execute the requests, remove the second init parameter (dryRun flag).
     // When dryRun is set to true, the requests are printed (but not executed).
-    //makeArtifact(Name, "tools.ThingArtifact", [Thing, false], ArtId);
+    //makeArtifact(Name, "org.hypermedea.ThingArtifact", [Thing, false], ArtId);
     //.println("PAY ATTENTION: I am in dryRun=True mode");
-    makeArtifact(Name, "tools.ThingArtifact", [Thing, false], ArtId);
+    makeArtifact(Name, "org.hypermedea.ThingArtifact", [Thing, false], ArtId);
     focus(ArtId);
 
     ?has_origin_coordinates(Name,CX,CY,CZ);

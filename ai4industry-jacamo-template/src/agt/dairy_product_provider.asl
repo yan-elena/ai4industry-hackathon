@@ -32,7 +32,7 @@ thing(dairyProductProvider,Thing) :-
     .print("Found suitable dairy product provider: ", Thing) ;
     // To also execute the requests, remove the second init parameter (dryRun flag).
     // When dryRun is set to true, the requests are printed (but not executed).
-    makeArtifact(Name, "tools.ThingArtifact", [Thing], ArtId);
+    makeArtifact(Name, "org.hypermedea.ThingArtifact", [Thing], ArtId);
     focus(ArtId);
 
     !getDescription(Name);

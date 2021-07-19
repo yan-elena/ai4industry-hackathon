@@ -58,7 +58,7 @@ In the template project this artifact is only used by the agent `ldfu_spider.asl
 You are provided with an implementation of a CArtAgO artifact that can retrieve, interpret, and use a W3C WoT TD to interact with the described Thing. A Jason agent can create a `ThingArtifact` as follows:
 
 ```
-makeArtifact("forkliftRobot", "tools.ThingArtifact", [Url, true], ArtId);
+makeArtifact("forkliftRobot", "org.hypermedea.ThingArtifact", [Url, true], ArtId);
 ```
 
 The `ThingArtifact` takes two initialization parameters:
