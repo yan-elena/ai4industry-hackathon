@@ -29,7 +29,7 @@ The project folder contains:
 
 6. The `ai4industry_jacamo.jcm` which is the file to be used and configured to launch the multi-agent system (It is used by gradle for the execution). Each time you create a new agent, you need to add it in this file as well as definition of initial beliefs.
 
-7. A simple script `init-simu` to reset the different simulated workshops (the argument of this script is the number of your group)
+7. A simple script `reset-simu` to reset the different simulated workshops (the argument of this script is the number of your group)
 
 8. The linked-data program `get.n3` that crawl the knowledge graph
 
