@@ -45,6 +45,17 @@ sourceSets {
     }
 }
 
+/*
+ * NOTE: to run the project with Gradle (though it is not the preferred method),
+ * 'hypermedea' must be installed as a local dependency on your machine.
+ *
+ * 1. clone the hypermedea repository available on Github at:
+ * https://github.com/Hypermedea/hypermedea
+ *
+ * 2. run the following command in the created folder:
+ * >>> gradle publishToMavenLocal
+ *
+ */
 task run (type: JavaExec, dependsOn: 'classes') {
     group       ' JaCaMo'
     description 'runs the JaCaMo application'
