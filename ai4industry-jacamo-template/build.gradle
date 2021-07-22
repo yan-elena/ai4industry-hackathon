@@ -29,7 +29,6 @@ repositories {
 
 dependencies {
     compile group: 'org.hypermedea', name: 'hypermedea', version: '0.1'
-    compile group: 'org.jacamo', name: 'jacamo-rest', version: '0.6-SNAPSHOT'
 }
 
 sourceSets {
