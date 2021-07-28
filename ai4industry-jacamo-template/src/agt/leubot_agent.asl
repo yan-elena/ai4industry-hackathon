@@ -1,3 +1,9 @@
+/* 
+leubot_agent controlling the Robot Arm. 
+
+@author Andrei Ciortea (Univ. St Gallen), Olivier Boissier (Mines Saint-Etienne)
+*/
+
 /* Initial beliefs and rules */
 
 nb(0).  // number of iterations
@@ -35,13 +41,17 @@ location_packaging([0.5,0.5,0.2]). // relative position of packaging workshop
     & api_key(Token)
     <-
     .print("Found suitable RobotArm : ", Thing) ;
-    // To also execute the requests, remove the second init parameter (dryRun flag).
-    // When dryRun is set to true, the requests are printed (but not executed).
-    //makeArtifact(Name, "org.hypermedea.ThingArtifact", [Thing, false], ArtId);
-    //.println("PAY ATTENTION: I am in dryRun=True mode");
-    makeArtifact(Name, "org.hypermedea.ThingArtifact", [Thing, false], ArtId);
+    makeArtifact(Name, "org.hypermedea.ThingArtifact", [Thing], ArtId);
+    // To initialize the ThingArtifact in a dryRun mode (requests are printed but not executed)
+    // makeArtifact(Name, "org.hypermedea.ThingArtifact", [Thing, false], ArtId);
+    // .println("PAY ATTENTION: I am in dryRun=True mode");
+    // When no parameter, dryRun is false by default.
     focus(ArtId);
 
+     // set credentials to access the Thing
+    ?credentials(SimuName,SimuPasswd);
+    setAuthCredentials(SimuName, SimuPasswd)[artifact_id(ArtId)] ;
+    
     ?has_origin_coordinates(Name,CX,CY,CZ);
     .println(Thing, " has origin coordinates ",CX," ",CY," ",CZ);
 

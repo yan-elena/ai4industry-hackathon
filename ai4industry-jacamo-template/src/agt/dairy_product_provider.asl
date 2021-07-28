@@ -1,9 +1,15 @@
-// Code for the Dairy Product Provider
-// It has the following action affordances:
-// - order
-// has no property affordances
-// has the following event affordances:
-// - delivered
+/*
+ Dairy Product Provider agent
+ Able to provide dairy product on request
+ It acts on a thing that has:
+ - the following action affordances:
+ -- order
+ - has no property affordances
+ - has the following event affordances:
+ -- delivered
+
+@author Olivier Boissier (Mines Saint-Etienne)
+*/
 
 /* Initial beliefs and rules */
 
@@ -28,13 +34,18 @@ thing(dairyProductProvider,Thing) :-
     !!run(Name);
   .
 
-+!run(Name) : thing(Name,Thing) <-
-    .print("Found suitable dairy product provider: ", Thing) ;
-    // To also execute the requests, remove the second init parameter (dryRun flag).
-    // When dryRun is set to true, the requests are printed (but not executed).
++!run(Name) : 
+  thing(Name,Thing)
+  <-
+    .print("found suitable dairy product provider: ", Thing) ;
+    // To initialize the ThingArtifact in a dryRun mode (requests are printed but not executed)
+    // makeArtifact(Name, "org.hypermedea.ThingArtifact", [Thing, false], ArtId);
+    // .println("PAY ATTENTION: I am in dryRun=True mode");
+    // When no parameter, dryRun is false by default.
     makeArtifact(Name, "org.hypermedea.ThingArtifact", [Thing], ArtId);
     focus(ArtId);
-
+    ?credentials(SimuName,SimuPasswd);
+    setAuthCredentials(SimuName, SimuPasswd)[artifact_id(ArtId)] ;
     !getDescription(Name);
 .
 
@@ -49,7 +60,7 @@ thing(dairyProductProvider,Thing) :-
     true
     <-
     !order(dairyProductProvider,Value);
-    .println("order has been processed, sending message to ",Sender);
+    .println("processed order and sending message to ",Sender);
     .send(Sender,tell,done(order));
   .
 
@@ -57,8 +68,9 @@ thing(dairyProductProvider,Thing) :-
     thing(Name,Thing)
     & order_action(Thing,ActionName)
     <-
-    .println("---> ",Thing," invoke operation ",ActionName," for ",Value);
-    invokeAction(ActionName,[Value])[artifact_name(Name)];
+    .println("acting on ",Name," to act on ",Thing," with parameter ",Value," on operation ", ActionName);
+    invokeAction(ActionName,Value)[artifact_name(Name)];
+    .println("acted on ",Name," to act on ",Thing," with parameter ",Value," on operation ", ActionName);
   .
 
 { include("inc/owl-signature.asl") }
