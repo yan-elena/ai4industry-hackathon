@@ -1,52 +1,120 @@
-/*
- * Configuration file of the ai4industry template, developed with JaCaMo.
- *
- * For a documentation of the .jcm file format, see:
- * https://github.com/jacamo-lang/jacamo/blob/master/doc/jcm.adoc
- *
- */
-mas ai4industry_jacamo {
+mas itm_factory_mas {
 
-    // Agent acquiring the KG with the ldfu_spider artifact
-    agent ldfu_spider {
-        beliefs: base("https://ci.mines-stetienne.fr/kg/")
-        goals: start // initial goal. Comment to make agent inactive
-        join: test_ldfu
-        focus: test_ldfu.ldfu_spider
+// Agent for controlling and testing the TD via the ThingArtifact
+    agent controller {
+        beliefs:    credentials("simu1","simu1")                        // credentials to access the thing
+        goals:      start                                               // initial goal. Comment to make agent inactive
+        join:       itm_factory_workspace                               // working environment for the agent
+        focus:      itm_factory_workspace.test_vl10                     
+        focus:      itm_factory_workspace.test_dx10                     
+        focus:      itm_factory_workspace.test_boschApas
+        focus:      itm_factory_workspace.test_xy10
+        focus:      itm_factory_workspace.mytool
     }
 
-    // Agent to control a (real-world) robotic arm
-    agent leubot_agent {
-        beliefs: name(leubot1) // name of the controlled robotic arm
-                 base("https://ci.mines-stetienne.fr/kg/") // node where to find the index.ttl
-                 api_key("KEYAPIS") // api key for using the leubot robot. Fix it
-        goals: start // initial goal. Comment to make agent inactive
-        join: test_ldfu
-        focus: test_ldfu.ldfu_spider
-    }
-
-    // Agent for providing cups and packages
+// Agent for providing cups and packages
     agent cup_provider {
-        beliefs: base("https://ci.mines-stetienne.fr/kg/") // node where to find the index.ttl
-                 name(cupProvider) // name of the controled thing
-        goals: start // initial goal. Comment to make agent inactive
-        join: test_ldfu
-        focus: test_ldfu.ldfu_spider
+        beliefs:    entryPoint("https://ci.mines-stetienne.fr/kg/")     // entry point to the KG
+                    name(cupProvider)                                   // name of the thing controled by the agent
+                    credentials("simu1","simu1")                        // credentials to access the thing  
+        goals:      start                                               // initial goal. Comment to make agent inactive
+        join:       itm_factory_workspace                               // working environment for the agent
+        focus:      itm_factory_workspace.ldfu_spider                   
+        }
+
+// Agent for providing dairy product
+     agent dairy_product_provider {
+        beliefs:    entryPoint("https://ci.mines-stetienne.fr/kg/")     // entry point to the KG
+                    name(dairyProductProvider)                          // name of the thing controled by the agent
+                    credentials("simu1","simu1")                        // credentials to access the thing  
+        goals:      start                                               // initial goal. Comment to make agent inactive
+        join:       itm_factory_workspace                               // working environment for the agent
+        focus:      itm_factory_workspace.ldfu_spider                   // focus on the ldfu_spider at init time
+        }
+
+
+// agent leubot_agent
+    agent leubot_agent {
+        beliefs:    entryPoint("https://ci.mines-stetienne.fr/kg/")     // entry point to the KG
+                    name(leubot2)                                       // name of the thing controled by the agent
+                    api_key("KEYAPIS")                                  // api key for using the leubot robot. Fix it
+        goals:      start                                               // initial goal. Comment to make agent inactive
+        join:       itm_factory_workspace                               // working environment for the agent
+        focus:      itm_factory_workspace.ldfu_spider
     }
 
-    // Agent for providing cups and packages
-    agent dairy_product_provider {
-        beliefs: base("https://ci.mines-stetienne.fr/kg/") // node where to find the index.ttl
-                 name(dairyProductProvider) // name of the controled thing
-        goals: start // initial goal. Comment to make agent inactive
-        join: test_ldfu
-        focus: test_ldfu.ldfu_spider
-    }
 
-    workspace test_ldfu  { // workspace where the artifact ldfu_spider is created
-        // creates Linked-Data-Fu spider, that will crawl the KG as
-        // specified in the Linked Data program "get.n3"
-        artifact ldfu_spider: org.hypermedea.LinkedDataFuSpider("get.n3")
-    }
+// Agent for controling the Conveying Workshop / Storage Rack
+   agent vl10_agent {
+        beliefs:    entryPoint("https://ci.mines-stetienne.fr/kg/")     // entry point to the KG
+                    name(storageRack)                                   // name of the thing controled by the agent
+                    credentials("simu1","simu1")                        // credentials to access the thing  
+                    timer(1000)                                         // time interval for the polling of values of the thing properties
+                    initialSpeed(0.5)                                   // initial speed of the conveyor
+                    provider(cup_provider)                              // name of the agent providing cups
+        goals:      start                                               // initial goal. Comment to make agent inactive
+        join:       itm_factory_workspace                               // working environment for the agent
+        focus:      itm_factory_workspace.ldfu_spider
+        }
 
+// Agent for controling the Dosaxe Workshop / Filling workshop
+    agent dx10_agent {
+        beliefs:    entryPoint("https://ci.mines-stetienne.fr/kg/")     // entry point to the KG
+                    name(fillingWorkshop)                               // name of thing controled by the agent
+                    credentials("simu1","simu1")                        // credentials to access the thing
+                    timer(1000)                                         // time interval for the polling of values of the thing properties
+                    initialSpeed(0.5)                                   // initial speed of the conveyor
+                    provider(dairy_product_provider)                    // name of the agent providing dairy product
+        goals:      start                                               // initial goal. Comment to make agent inactive
+        join:       itm_factory_workspace                               // working environment for the agent
+        focus:      itm_factory_workspace.ldfu_spider
+        }
+
+// Agent for the robotic arm
+    agent apas_agent {
+        beliefs:    entryPoint("https://ci.mines-stetienne.fr/kg/")     // entry point to the KG
+                    name(boschApas)                                     // name of the thing controled by the agent
+                    credentials("simu1","simu1")                        // credentials to access the thing
+                    timer(1000)                                         // time interval for the polling of values of the thing properties
+        goals:      start                                               // initial goal. Comment to make agent inactive
+        join:       itm_factory_workspace                               // working environment for the agent
+        focus:      itm_factory_workspace.ldfu_spider
+        }
+
+
+// Agent for controling the Packaging Workshop
+    agent xy10_agent {
+        beliefs:    entryPoint("https://ci.mines-stetienne.fr/kg/")     // entry point to the KG
+                    name(packagingWorkshop)                             // name of the thing controled by the agent
+                    credentials("simu1","simu1")                        // credentials to access the thing
+                    timer(1000)                                         // time interval for the polling of values of the thing properties
+                    initialSpeed(0.5)                                   // initial speed of the conveyor
+                    provider(cup_provider)                              // name of the agent providing packages
+        goals:      start                                               // initial goal. Comment to make agent inactive
+        join:       itm_factory_workspace                               // working environment for the agent
+        focus:      itm_factory_workspace.ldfu_spider
+        }
+
+// Agent for crawling the KG
+    agent ldfu_spider {
+        beliefs:    entryPoint("https://ci.mines-stetienne.fr/kg/")     // entry point to the KG
+        goals:      start                                               // initial goal. Comment to make agent inactive
+        join:       itm_factory_workspace                               // working environment for the agent
+        focus:      itm_factory_workspace.ldfu_spider
+        }
+
+
+    workspace itm_factory_workspace  {
+        //artifact mytool : tools.Counter(10)
+        artifact test_vl10 : org.hypermedea.ThingArtifact("https://ci.mines-stetienne.fr/kg/itmfactory/vl10")                           // for test by controler agent
+        artifact test_dx10 : org.hypermedea.ThingArtifact("https://ci.mines-stetienne.fr/kg/itmfactory/dx10")                           // for test by controler agent
+        artifact test_boschApas : org.hypermedea.ThingArtifact("https://ci.mines-stetienne.fr/kg/itmfactory/bosch-apas")                // for test by controler agent
+        artifact test_xy10 : org.hypermedea.ThingArtifact("https://ci.mines-stetienne.fr/kg/itmfactory/xy10")                           // for test by controler agent
+        artifact test_cupProvider : org.hypermedea.ThingArtifact("https://ci.mines-stetienne.fr/kg/cup-provider")                       // for test by controler agent
+        artifact test_dairyProductProvider : org.hypermedea.ThingArtifact("https://ci.mines-stetienne.fr/kg/dairy-product-provider")    // for test by controler agent
+        artifact ldfu_spider : org.hypermedea.LinkedDataFuSpider("get.n3")          // Embedding of Linked-Data-Fu spider crawling the KG by executing the linked Data program "get.n3"
+        }
+
+   class-path : ../../../hypermedea/build/install/hypermedea/lib/
+   java-path : ../../../hypermedea/build/install/hypermedea/lib/
 }
