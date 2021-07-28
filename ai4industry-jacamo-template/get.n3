@@ -17,7 +17,7 @@
                      <https://w3id.org/bot#> ,
                      <http://www.w3.org/2003/01/geo/wgs84_pos#> ,
                      <https://www.w3.org/2019/wot/td#> ,
-                     #<https://www.w3.org/2019/wot/hypermedia#> ,
+ #                    <https://www.w3.org/2019/wot/hypermedia#> ,
                      <https://ci.mines-stetienne.fr/kg/ontology#> .
 
 {
