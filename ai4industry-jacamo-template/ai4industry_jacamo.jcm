@@ -115,6 +115,4 @@ mas itm_factory_mas {
         artifact ldfu_spider : org.hypermedea.LinkedDataFuSpider("get.n3")          // Embedding of Linked-Data-Fu spider crawling the KG by executing the linked Data program "get.n3"
         }
 
-   class-path : ../../../hypermedea/build/install/hypermedea/lib/
-   java-path : ../../../hypermedea/build/install/hypermedea/lib/
 }
