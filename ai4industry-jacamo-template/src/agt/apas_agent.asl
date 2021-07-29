@@ -101,6 +101,10 @@ thing(boschApas,Thing) :-
 +!carry(Name,From,To) :
     true
     <-
+    !move(Name, From);
+    !grasp(Name, From);
+    !move(Name, To);
+    !release(Name, To);
     .println("carrying a pot from ",From," to ",To);
   .
 
