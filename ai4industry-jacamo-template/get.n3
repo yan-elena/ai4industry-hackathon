@@ -17,19 +17,8 @@
                      <https://w3id.org/bot#> ,
                      <http://www.w3.org/2003/01/geo/wgs84_pos#> ,
                      <https://www.w3.org/2019/wot/td#> ,
-                     #<https://www.w3.org/2019/wot/hypermedia#> ,
-                     #<https://www.w3.org/2019/wot/json-schema#> ,
-                     #<https://www.w3.org/2019/wot/security#> ,
-                     # there shouldn't be duplicates, yes...
-                     <https://ci.mines-stetienne.fr/kg/ontology#> ,
-                     <https://ci.mines-stetienne.fr/kg1/ontology#> ,
-                     <https://ci.mines-stetienne.fr/kg2/ontology#> ,
-                     <https://ci.mines-stetienne.fr/kg3/ontology#> ,
-                     <https://ci.mines-stetienne.fr/kg4/ontology#> ,
-                     <https://ci.mines-stetienne.fr/kg5/ontology#> ,
-                     <https://ci.mines-stetienne.fr/kg6/ontology#> ,
-                     <https://ci.mines-stetienne.fr/kg7/ontology#> ,
-                     <https://ci.mines-stetienne.fr/kg8/ontology#> .
+ #                    <https://www.w3.org/2019/wot/hypermedia#> ,
+                     <https://ci.mines-stetienne.fr/kg/ontology#> .
 
 {
   # triples are interpreted as link with anchor, target and relation type
@@ -48,7 +37,7 @@
 
 {
   # special handling of 'see also'
-  ?anchor rdfs:seeAlso ?target .
+  <https://ci.mines-stetienne.fr/kg/> rdfs:seeAlso ?target .
 }
 =>
 {

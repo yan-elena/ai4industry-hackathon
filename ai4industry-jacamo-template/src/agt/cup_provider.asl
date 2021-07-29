@@ -1,11 +1,17 @@
-// Code for the Cup and Package Provider
-// It has the following action affordances:
-// - order
-// - orderPackages
-// has no property affordances
-// has the following event affordances:
-// - delivered
-// - deliveredPackages
+/*
+ Cup and Package Provider agent
+ Able to provide cups or packages on request
+ It acts on a thing that has:
+ - the following action affordances:
+ -- order
+ -- orderPackages
+ - has no property affordances
+ - has the following event affordances:
+ -- delivered
+ -- deliveredPackages
+
+@author Olivier Boissier (Mines Saint-Etienne)
+*/
 
 /* Initial beliefs and rules */
 
@@ -35,12 +41,16 @@ thing(cupProvider,Thing) :-
 +!run(Name) :
     thing(Name,Thing)
     <-
-    .print("Found suitable cup and package provider: ", Thing) ;
-    // To also execute the requests, remove the second init parameter (dryRun flag).
-    // When dryRun is set to true, the requests are printed (but not executed).
-    makeArtifact(Name, "tools.ThingArtifact", [Thing], ArtId);
+    .print("found suitable cup and package provider: ", Thing) ;
+    // To initialize the ThingArtifact in a dryRun mode (requests are printed but not executed)
+    // makeArtifact(Name, "org.hypermedea.ThingArtifact", [Thing, false], ArtId);
+    // .println("PAY ATTENTION: I am in dryRun=True mode");
+    // When no parameter, dryRun is false by default.
+    makeArtifact(Name, "org.hypermedea.ThingArtifact", [Thing], ArtId);
     focus(ArtId);
-
+     // set credentials to access the Thing
+    ?credentials(SimuName,SimuPasswd);
+    setAuthCredentials(SimuName, SimuPasswd)[artifact_id(ArtId)] ;
     !getDescription(Name);
 .
 
@@ -55,7 +65,7 @@ thing(cupProvider,Thing) :-
     true
     <-
     !order(cupProvider,Value);
-    .println("order has been processed, sending message to ",Sender);
+    .println("processed order and sending message to ",Sender);
     .send(Sender,tell,done(order));
   .
 
@@ -63,16 +73,18 @@ thing(cupProvider,Thing) :-
     thing(Name,Thing)
     & order_action(Thing,ActionName)
     <-
-    .println("---> ",Thing," invoke operation ",ActionName," for ",Value);
-    invokeAction(ActionName,[Value])[artifact_name(Name)];
+    .println("acting on ",Name," to act on ",Thing," with parameter ",Value," on operation ", ActionName);
+    invokeAction(ActionName,Value)[artifact_name(Name)];
+    .println("acted on ",Name," to act on ",Thing," with parameter ",Value," on operation ", ActionName);
   .
 
 +!orderPackages(Name) :
     thing(Name,Thing)
     & order_packages_action(Thing,ActionName)
     <-
-    .println("---> ",Thing," invoke operation ",ActionName);
+    .println("acting on ",Name," to act on ",Thing," on operation ", ActionName);
     invokeAction(ActionName)[artifact_name(Name)];
+    .println("acted on ",Name," to act on ",Thing," on operation ", ActionName);
   .
 
 { include("inc/owl-signature.asl") }

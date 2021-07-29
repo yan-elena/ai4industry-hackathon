@@ -1,9 +1,14 @@
-location_conveyor([-0.5,0.5,0.2]). // relative position of conveyor
-location_packaging([0.5,0.5,0.2]). // relative position of packaging workshop
+/*
+
+@author Olivier Boissier (Mines Saint-Etienne)
+*/
+
+location_conveyor([2.2,0,1]). // relative position of conveyor
+location_packaging([3.2,0,1]). // relative position of packaging workshop
 
 has_origin_coordinates(Name,ValueX, ValueY, ValueZ) :-
       thing(Name,Thing)
-      & base(Base)
+      & entryPoint(Base)
       & builder(Thing, Base, "ontology#hasOriginCoordinates", Temp)
       & builder(Temp, Base, "ontology#coordX",ValueX)
       & builder(Temp, Base, "ontology#coordY",ValueY)
@@ -15,9 +20,8 @@ has_origin_coordinates(Name,ValueX, ValueY, ValueZ) :-
     thing(Name,Thing)
     <-
     ?reset_action(Thing,ActionName);
-    .println("---> ",Thing," invoke operation ",ActionName);
-    invokeAction(ActionName,[])[artifact_name(Name)];
-    .println("---> ",Thing," operation invoked ",ActionName);
+    invokeAction(ActionName)[artifact_name(Name)];
+    .println("invoked operation ",ActionName," on ",Thing);
   .
 
 // contingency plan in case the achievement of goal !reset fails
@@ -32,9 +36,8 @@ has_origin_coordinates(Name,ValueX, ValueY, ValueZ) :-
     thing(Name,Thing)
     & release_action(Thing,ActionName)
     <-
-    .println("---> ",Thing," invoke operation ",ActionName," at ", At);
-    invokeAction(ActionName,[])[artifact_name(Name)];
-    .println("---> ",Thing," operation invoked ",ActionName," at ", At);
+    invokeAction(ActionName)[artifact_name(Name)];
+    .println("invoked operation ",ActionName," with parameter ",At," on ",Thing);
   .
 
 // Plan for invoking the action affordance grasp
@@ -42,13 +45,15 @@ has_origin_coordinates(Name,ValueX, ValueY, ValueZ) :-
     thing(Name,Thing)
     & grasp_action(Thing,ActionName)
     <-
-    .println("---> ",Thing," invoke operation ",ActionName," at ", At);
+    .println("invoking operation ",ActionName," with parameter ",At," on ",Thing);
     invokeAction(ActionName)[artifact_name(Name)];
+    .println("invoked operation ",ActionName," with parameter ",At," on ",Thing);
   .
 
 // contingency plan in case the achievement of goal !grasp fails
 -!grasp(Name,At) :
     thing(Name,Thing)
+    & grasp_action(Thing,ActionName)
     <-
     .println("---> Grasp operation failed ");
     .wait(3000);
@@ -56,10 +61,10 @@ has_origin_coordinates(Name,ValueX, ValueY, ValueZ) :-
   .
 
 // Plan for invoking the move affordance grasp
-+!move(Name,To) :
++!move(Name,[X,Y,Z]) :
     thing(Name,Thing)
     & move_action(Thing,ActionName)
     <-
-    .println("---> ",Thing," invoke operation ",ActionName," to ", To);
-    invokeAction(ActionName, ["x", "y", "z"], To)[artifact_name(Name)];
+    invokeAction(ActionName,json([kv(x,X),kv(y,Y),kv(z,Z)]))[artifact_name(Name)];
+    .println("invoked operation ",ActionName," with parameter X ",X," Y ",Y," Z ",Z," on ",Thing);
   .

@@ -1,3 +1,8 @@
+/* 
+
+@author Olivier Boissier (Mines Saint-Etienne)
+*/
+
 // used for concatenating the base url
 builder(Arg1,Base,End,Arg2) :-
     .concat(Base,End,Result)
@@ -6,7 +11,7 @@ builder(Arg1,Base,End,Arg2) :-
 
 location_of_output_product(Name, ValueX, ValueY, ValueZ) :-
       thing(Name, Thing)
-      & base(Base)
+      & entryPoint(Base)
       & builder(Thing,Base,"ontology#locationOfOutputProduct",Temp)
       & builder(Temp,Base,"ontology#coordX",ValueX)
       & builder(Temp,Base,"ontology#coordY",ValueY)
@@ -15,7 +20,7 @@ location_of_output_product(Name, ValueX, ValueY, ValueZ) :-
 
 location_of_input_material(Name,ValueX, ValueY, ValueZ) :-
       thing(Name, Thing)
-      & base(Base)
+      & entryPoint(Base)
       & builder(Thing,Base,"ontology#locationOfInputMaterial",Temp)
       & builder(Temp,Base,"ontology#coordX",ValueX)
       & builder(Temp,Base,"ontology#coordY",ValueY)
@@ -74,17 +79,17 @@ move_from_to_action(Thing,ActionName) :-
 release_action(Thing, ActionName) :-
       thing(Thing)
       & has_action_affordance(Thing,RAction)
-      & base(Base)
-      & .concat(Base,"ontology#Release",Result)
-      & rdf(RAction,"http://www.w3.org/1999/02/22-rdf-syntax-ns#type",Result)
-//    & release_action(RAction)
+//      & entryPoint(Base)
+//      & .concat(Base,"ontology#Release",Result)
+//      & rdf(RAction,"http://www.w3.org/1999/02/22-rdf-syntax-ns#type",Result)
+      & release_action(RAction)
       & name(RAction, ActionName)
   .
 
 reset_action(Thing,ActionName) :-
       thing(Thing)
       & has_action_affordance(Thing,RAction)
-      & base(Base)
+      & entryPoint(Base)
       & .concat(Base,"ontology#Reset",Result)
       & rdf(RAction,"http://www.w3.org/1999/02/22-rdf-syntax-ns#type",Result)
       & name(RAction,ActionName)
@@ -93,21 +98,22 @@ reset_action(Thing,ActionName) :-
 grasp_action(Thing, ActionName) :-
       thing(Thing)
       & has_action_affordance(Thing,GAction)
-      & base(Base)
+//      & entryPoint(Base)
 //      & .concat(Base,"ontology#GraspAction",Result)
-      & .concat(Base,"ontology#Grasp",Result)
-      & rdf(GAction,"http://www.w3.org/1999/02/22-rdf-syntax-ns#type",Result)
-//    & grasp_action(GAction)
+//      & .concat(Base,"ontology#Grasp",Result)
+//      & rdf(GAction,"http://www.w3.org/1999/02/22-rdf-syntax-ns#type",Result)
+      & grasp_action(GAction)
       & name(GAction, ActionName)
   .
 
 move_action(Thing,ActionName) :-
       thing(Thing)
       & has_action_affordance(Thing, MoveAction)
-      & base(Base)
-      & .concat(Base,"ontology#MoveTo",Result)
-      & rdf(MoveAction,"http://www.w3.org/1999/02/22-rdf-syntax-ns#type",Result)
-    //& move_from_to_action(MoveAction)
+//      & entryPoint(Base)
+//      & .concat(Base,"ontology#MoveTo",Result)
+//      & .concat(Base,"ontology#MoveFromToAction",Result)
+//      & rdf(MoveAction,"http://www.w3.org/1999/02/22-rdf-syntax-ns#type",Result)
+      & move_from_to_action(MoveAction)
       & name(MoveAction, ActionName)
   .
 
@@ -118,53 +124,54 @@ stop_in_emergency_action(Thing,ActionName) :-
     & name(Action,ActionName)
   .
 
-stack_light_status_property(Thing,PropertyName) :-
+stack_light_status_property(Thing,PName) :-
     thing(Thing)
     & has_property_affordance(Thing,Property)
     & stack_light_status(Property)
-    & name(Property,PropertyName)
+    & name(Property,PName)
   .
 
-position_x_property(Thing,PropertyName) :-
+position_x_property(Thing,PName) :-
     thing(Thing)
     & has_property_affordance(Thing, Property)
     & x_coordinate(Property)
-    & name(Property,PropertyName)
+    & name(Property,PName)
   .
 
-position_z_property(Thing,PropertyName) :-
+position_z_property(Thing,PName) :-
     thing(Thing)
     & has_property_affordance(Thing, Property)
     & z_coordinate(Property)
-    & name(Property,PropertyName)
+    & name(Property,PName)
   .
 
-tank_level_property(Thing,PropertyName):-
+tank_level_property(Thing,PName):-
     thing(Thing)
     & has_property_affordance(Thing,Property)
     & liquid_volume(Property)
-    & name(Property,PropertyName)
+    & name(Property,PName)
   .
 
-conveyor_speed_property(Thing,PropertyName):-
+conveyor_speed_property(Thing,PName):-
     thing(Thing)
     & has_property_affordance(Thing, Property)
     & conveyor_speed(Property)
-    & name(Property,PropertyName)
+    & name(Property,PName)
   .
 
-optical_sensor_status_property(Thing,PropertyName):-
+optical_sensor_status_property(Thing,PName):-
     thing(Thing)
     & has_property_affordance(Thing,Property)
     & optical_sensor_status(Property)
-    & name(Property,PropertyName)
+    & name(Property,PName)
   .
 
-conveyor_head_status_property(Thing,PropertyName) :-
+conveyor_head_status_property(Thing,PName) :-
     thing(Thing)
     & has_property_affordance(Thing,Property)
     & optical_sensor_status(Property)
-    & name(Property,PropertyName)
+    & name(Property,PName)
+    & PName == "conveyorHeadStatus"
   .
 
 magnetic_valve_status_property(Thing,PName) :-
@@ -186,6 +193,7 @@ clamp_status_property(Thing,PName) :-
     & has_property_affordance(Thing, Property)
     & boolean_schema(Property)
     & name(Property,PName)
+    & PName == "clampStatus"
   .
 
 package_buffer_property(Thing,PName) :-
@@ -242,10 +250,12 @@ grasping_property(Thing,PName) :-
   .
 
 +!getDescription(Name) : thing(Name,Thing) <-
+    .println("----------------------------------------------------");
     .findall(AN,has_action_affordance(Thing, AA) &  name(AA, AN),AL);
     .println(Thing," has the following action affordances ",AL);
     .findall(PN,has_property_affordance(Thing,PA) & name(PA, PN),PL);
     .println(Thing," has the following property affordances ",PL);
     .findall(EN,has_event_affordance(Thing,EA) & name(EA, EN),EL)
     .println(Thing," has the following event affordances ",EL);
+    .println("----------------------------------------------------");
   .
