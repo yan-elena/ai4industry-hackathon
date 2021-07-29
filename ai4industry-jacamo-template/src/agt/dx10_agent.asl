@@ -96,6 +96,7 @@ thing(fillingWorkshop,Thing) :-
 +!run(Name) :
     true
     <-
+    
     .wait(100);
     !!run(Name).
 
@@ -103,8 +104,15 @@ thing(fillingWorkshop,Thing) :-
 +!fillItems(Name) :
     thing(Name,Thing)
     <-
+    ?tankLevel(Name,Emp);
+    .println("EMpty ",Emp);
+    if (Emp < 0.5) {
+    	.println("The tank is empty.");
+    	.send(dairy_product_provider,achieve,order(3));
+    }
     .println("is filling Item.");
     .wait(1000);
+    !!fillItems(Name)
   .
 
 // TO BE COMPLETED ....

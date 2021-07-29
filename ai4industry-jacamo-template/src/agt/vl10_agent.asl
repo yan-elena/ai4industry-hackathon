@@ -69,17 +69,15 @@ thing(storageRack,Thing) :-
     !testStatus(Name);
 
     // Not necessary to get all of them regularly. 
-    // Choose and comment, otherwise there is a risk of
-    // consuming all the computing resources
+     //Choose and comment, otherwise there is a risk of
+     //consuming all the computing resources
     !observeStackLightStatus(Name);
     !observeCapacity(Name);  
     !observePositionX(Name); 
     !observePositionZ(Name); 
     !observeClampStatus(Name);
     !observeConveyorSpeed(Name); 
-   
     !conveyItems(Name);
-
     !testStatus(Name);
   .
 
@@ -94,6 +92,7 @@ thing(storageRack,Thing) :-
 +!conveyItems(Name) :
     thing(Name,Thing)
     <-
+     !pickItem(Name,[0,2]);
     .println("is conveying.");
     .wait(1000);
   .

@@ -1,4 +1,4 @@
-/* 
+/*
 
 @author Olivier Boissier (Mines Saint-Etienne)
 */

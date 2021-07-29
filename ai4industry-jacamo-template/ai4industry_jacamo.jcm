@@ -1,7 +1,7 @@
 mas itm_factory_mas {
 
 // Agent for controlling and testing the TD via the ThingArtifact
-    agent controller {
+ agent controller {
         beliefs:    credentials("simu1","simu1")                        // credentials to access the thing
         goals:      start                                               // initial goal. Comment to make agent inactive
         join:       itm_factory_workspace                               // working environment for the agent
@@ -9,7 +9,7 @@ mas itm_factory_mas {
         focus:      itm_factory_workspace.test_dx10                     
         focus:      itm_factory_workspace.test_boschApas
         focus:      itm_factory_workspace.test_xy10
-        focus:      itm_factory_workspace.mytool
+       // focus:      itm_factory_workspace.mytool				problem
     }
 
 // Agent for providing cups and packages
