@@ -1,5 +1,5 @@
-/* 
-leubot_agent controlling the Robot Arm. 
+/*
+leubot_agent controlling the Robot Arm.
 
 @author Andrei Ciortea (Univ. St Gallen), Olivier Boissier (Mines Saint-Etienne)
 */
@@ -22,8 +22,8 @@ thing(leubot2,Thing) :-
       & rdf(Thing,"http://purl.org/dc/terms/title","leubot2-3d")
     .
 
-location_conveyor([-0.5,0.5,0.2]). // relative position of conveyor
-location_packaging([0.5,0.5,0.2]). // relative position of packaging workshop
+location_conveyor([2.2,0,1]). // relative position of conveyor
+location_packaging([3.2,0,1]). // relative position of packaging workshop
 
 /* Initial goals */
 
@@ -51,7 +51,7 @@ location_packaging([0.5,0.5,0.2]). // relative position of packaging workshop
      // set credentials to access the Thing
     ?credentials(SimuName,SimuPasswd);
     setAuthCredentials(SimuName, SimuPasswd)[artifact_id(ArtId)] ;
-    
+
     ?has_origin_coordinates(Name,CX,CY,CZ);
     .println(Thing, " has origin coordinates ",CX," ",CY," ",CZ);
 
