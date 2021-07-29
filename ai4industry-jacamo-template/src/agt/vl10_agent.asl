@@ -44,6 +44,7 @@ thing(storageRack,Thing) :-
 
 /* Initial goals */
 
+
 /* Plans */
 
 +!start :
@@ -65,22 +66,27 @@ thing(storageRack,Thing) :-
     setAuthCredentials(SimuName, SimuPasswd)[artifact_id(ArtId)] ;
 
     ?locationOfOutputProduct(Name,COX,COY,COZ);
-    !getDescription(Name);
-    !testStatus(Name);
+    //!getDescription(Name);
+    //!testStatus(Name);
 
     // Not necessary to get all of them regularly. 
     // Choose and comment, otherwise there is a risk of
     // consuming all the computing resources
-    !observeStackLightStatus(Name);
-    !observeCapacity(Name);  
-    !observePositionX(Name); 
-    !observePositionZ(Name); 
-    !observeClampStatus(Name);
-    !observeConveyorSpeed(Name); 
-   
-    !conveyItems(Name);
+    
+    //!observeStackLightStatus(Name);
+    //!observeCapacity(Name);  
+    //!observePositionX(Name); 
+    //!observePositionZ(Name); 
+    //!observeClampStatus(Name);
+    //!observeConveyorSpeed(Name); 
 
-    !testStatus(Name);
+    !conveyItems(Name);
+    ?conveyorSpeed(Name,IS);
+    if (IS == 0) {
+      !changeConveyorSpeed(Name,0.5);
+    }
+    !lunchPicking(Name);
+    //!testStatus(Name);
   .
 
 +!run(Name) :
