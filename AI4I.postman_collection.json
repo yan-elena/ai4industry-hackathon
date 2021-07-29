@@ -1,0 +1,2091 @@
+{
+	"info": {
+		"_postman_id": "cf99abea-df83-4015-b145-3804624c848f",
+		"name": "AI4I_4",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "TDs",
+			"item": [
+				{
+					"name": "getRobotArmTD",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "simu4",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "simu4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://ci.mines-stetienne.fr/simu/robotArm",
+							"protocol": "https",
+							"host": [
+								"ci",
+								"mines-stetienne",
+								"fr"
+							],
+							"path": [
+								"simu",
+								"robotArm"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getFillingWorkshopTD",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "simu4",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "simu4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://ci.mines-stetienne.fr/simu/fillingWorkshop",
+							"protocol": "https",
+							"host": [
+								"ci",
+								"mines-stetienne",
+								"fr"
+							],
+							"path": [
+								"simu",
+								"fillingWorkshop"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getPackagingWorkshopTD",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "simu4",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "simu4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://ci.mines-stetienne.fr/simu/packagingWorkshop",
+							"protocol": "https",
+							"host": [
+								"ci",
+								"mines-stetienne",
+								"fr"
+							],
+							"path": [
+								"simu",
+								"packagingWorkshop"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getDairyProductProviderTD",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "simu4",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "simu4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://ci.mines-stetienne.fr/simu/dairyProductProvider",
+							"protocol": "https",
+							"host": [
+								"ci",
+								"mines-stetienne",
+								"fr"
+							],
+							"path": [
+								"simu",
+								"dairyProductProvider"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getStorageRackTD",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "simu4",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "simu4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://ci.mines-stetienne.fr/simu/storageRack",
+							"protocol": "https",
+							"host": [
+								"ci",
+								"mines-stetienne",
+								"fr"
+							],
+							"path": [
+								"simu",
+								"storageRack"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cupProvider",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "simu4",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "simu4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://ci.mines-stetienne.fr/simu/cupProvider",
+							"protocol": "https",
+							"host": [
+								"ci",
+								"mines-stetienne",
+								"fr"
+							],
+							"path": [
+								"simu",
+								"cupProvider"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getFactoryTD",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "simu4",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "simu4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://ci.mines-stetienne.fr/simu/factory",
+							"protocol": "https",
+							"host": [
+								"ci",
+								"mines-stetienne",
+								"fr"
+							],
+							"path": [
+								"simu",
+								"factory"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "robotArm",
+			"item": [
+				{
+					"name": "getStackLightStatus",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "simu4",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "simu4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://ci.mines-stetienne.fr/simu/robotArm/properties/stackLightStatus",
+							"protocol": "https",
+							"host": [
+								"ci",
+								"mines-stetienne",
+								"fr"
+							],
+							"path": [
+								"simu",
+								"robotArm",
+								"properties",
+								"stackLightStatus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getInMovement",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "simu4",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "simu4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://ci.mines-stetienne.fr/simu/fillingWorkshop/properties/conveyorSpeed",
+							"protocol": "https",
+							"host": [
+								"ci",
+								"mines-stetienne",
+								"fr"
+							],
+							"path": [
+								"simu",
+								"fillingWorkshop",
+								"properties",
+								"conveyorSpeed"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getGrasping",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "simu4",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "simu4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://ci.mines-stetienne.fr/simu/robotArm/properties/grasping",
+							"protocol": "https",
+							"host": [
+								"ci",
+								"mines-stetienne",
+								"fr"
+							],
+							"path": [
+								"simu",
+								"robotArm",
+								"properties",
+								"grasping"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pressEmergencyStop",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "simu4",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "simu4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://ci.mines-stetienne.fr/simu/robotArm/actions/pressEmergencyStop",
+							"protocol": "https",
+							"host": [
+								"ci",
+								"mines-stetienne",
+								"fr"
+							],
+							"path": [
+								"simu",
+								"robotArm",
+								"actions",
+								"pressEmergencyStop"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "moveToRobotArm",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "simu4",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "simu4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"x\": 3.2,\r\n    \"y\": 0,\r\n    \"z\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ci.mines-stetienne.fr/simu/robotArm/actions/moveTo",
+							"protocol": "https",
+							"host": [
+								"ci",
+								"mines-stetienne",
+								"fr"
+							],
+							"path": [
+								"simu",
+								"robotArm",
+								"actions",
+								"moveTo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "grasp",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "simu4",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "simu4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ci.mines-stetienne.fr/simu/robotArm/actions/grasp",
+							"protocol": "https",
+							"host": [
+								"ci",
+								"mines-stetienne",
+								"fr"
+							],
+							"path": [
+								"simu",
+								"robotArm",
+								"actions",
+								"grasp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "release",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "simu4",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "simu4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ci.mines-stetienne.fr/simu/robotArm/actions/release",
+							"protocol": "https",
+							"host": [
+								"ci",
+								"mines-stetienne",
+								"fr"
+							],
+							"path": [
+								"simu",
+								"robotArm",
+								"actions",
+								"release"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "fillingWorkshop",
+			"item": [
+				{
+					"name": "getStackLightStatus",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "simu4",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "simu4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://ci.mines-stetienne.fr/simu/fillingWorkshop/properties/stackLightStatus",
+							"protocol": "https",
+							"host": [
+								"ci",
+								"mines-stetienne",
+								"fr"
+							],
+							"path": [
+								"simu",
+								"fillingWorkshop",
+								"properties",
+								"stackLightStatus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "conveyorSpeed",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "simu4",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "simu4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://ci.mines-stetienne.fr/simu/fillingWorkshop/properties/conveyorSpeed",
+							"protocol": "https",
+							"host": [
+								"ci",
+								"mines-stetienne",
+								"fr"
+							],
+							"path": [
+								"simu",
+								"fillingWorkshop",
+								"properties",
+								"conveyorSpeed"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "conveyorSpeed",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "simu4",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "simu4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "0.5",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ci.mines-stetienne.fr/simu/fillingWorkshop/properties/conveyorSpeed",
+							"protocol": "https",
+							"host": [
+								"ci",
+								"mines-stetienne",
+								"fr"
+							],
+							"path": [
+								"simu",
+								"fillingWorkshop",
+								"properties",
+								"conveyorSpeed"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "conveyorHeadStatus",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "simu4",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "simu4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://ci.mines-stetienne.fr/simu/fillingWorkshop/properties/conveyorHeadStatus",
+							"protocol": "https",
+							"host": [
+								"ci",
+								"mines-stetienne",
+								"fr"
+							],
+							"path": [
+								"simu",
+								"fillingWorkshop",
+								"properties",
+								"conveyorHeadStatus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pressEmergencyStop",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "simu4",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "simu4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://ci.mines-stetienne.fr/simu/fillingWorkshop/actions/pressEmergencyStop",
+							"protocol": "https",
+							"host": [
+								"ci",
+								"mines-stetienne",
+								"fr"
+							],
+							"path": [
+								"simu",
+								"fillingWorkshop",
+								"actions",
+								"pressEmergencyStop"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "opticalSensorStatus",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "simu4",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "simu4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"x\": 0,\r\n    \"y\": 0,\r\n    \"z\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ci.mines-stetienne.fr/simu/fillingWorkshop/properties/opticalSensorStatus",
+							"protocol": "https",
+							"host": [
+								"ci",
+								"mines-stetienne",
+								"fr"
+							],
+							"path": [
+								"simu",
+								"fillingWorkshop",
+								"properties",
+								"opticalSensorStatus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "tankLevel",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "simu4",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "simu4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ci.mines-stetienne.fr/simu/fillingWorkshop/properties/tankLevel",
+							"protocol": "https",
+							"host": [
+								"ci",
+								"mines-stetienne",
+								"fr"
+							],
+							"path": [
+								"simu",
+								"fillingWorkshop",
+								"properties",
+								"tankLevel"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "positionX",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "simu4",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "simu4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ci.mines-stetienne.fr/simu/fillingWorkshop/properties/positionX",
+							"protocol": "https",
+							"host": [
+								"ci",
+								"mines-stetienne",
+								"fr"
+							],
+							"path": [
+								"simu",
+								"fillingWorkshop",
+								"properties",
+								"positionX"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "packagingWorkshop",
+			"item": [
+				{
+					"name": "stackLightStatus",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "simu4",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "simu4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://ci.mines-stetienne.fr/simu/packagingWorkshop/properties/stackLightStatus",
+							"protocol": "https",
+							"host": [
+								"ci",
+								"mines-stetienne",
+								"fr"
+							],
+							"path": [
+								"simu",
+								"packagingWorkshop",
+								"properties",
+								"stackLightStatus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "capacity",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "simu4",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "simu4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://ci.mines-stetienne.fr/simu/storageRack/properties/capacity",
+							"protocol": "https",
+							"host": [
+								"ci",
+								"mines-stetienne",
+								"fr"
+							],
+							"path": [
+								"simu",
+								"storageRack",
+								"properties",
+								"capacity"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "packageBuffer",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "simu4",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "simu4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://ci.mines-stetienne.fr/simu/packagingWorkshop/properties/packageBuffer",
+							"protocol": "https",
+							"host": [
+								"ci",
+								"mines-stetienne",
+								"fr"
+							],
+							"path": [
+								"simu",
+								"packagingWorkshop",
+								"properties",
+								"packageBuffer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "opticalSensorPackage",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "simu4",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "simu4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://ci.mines-stetienne.fr/simu/packagingWorkshop/properties/opticalSensorPackage",
+							"protocol": "https",
+							"host": [
+								"ci",
+								"mines-stetienne",
+								"fr"
+							],
+							"path": [
+								"simu",
+								"packagingWorkshop",
+								"properties",
+								"opticalSensorPackage"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "opticalSensorContainer1",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "simu4",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "simu4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://ci.mines-stetienne.fr/simu/packagingWorkshop/properties/opticalSensorContainer1",
+							"protocol": "https",
+							"host": [
+								"ci",
+								"mines-stetienne",
+								"fr"
+							],
+							"path": [
+								"simu",
+								"packagingWorkshop",
+								"properties",
+								"opticalSensorContainer1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "opticalSensorContainer2",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "simu4",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "simu4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://ci.mines-stetienne.fr/simu/packagingWorkshop/properties/opticalSensorContainer2",
+							"protocol": "https",
+							"host": [
+								"ci",
+								"mines-stetienne",
+								"fr"
+							],
+							"path": [
+								"simu",
+								"packagingWorkshop",
+								"properties",
+								"opticalSensorContainer2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "conveyorSpeed",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "simu4",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "simu4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://ci.mines-stetienne.fr/simu/packagingWorkshop/properties/conveyorSpeed",
+							"protocol": "https",
+							"host": [
+								"ci",
+								"mines-stetienne",
+								"fr"
+							],
+							"path": [
+								"simu",
+								"packagingWorkshop",
+								"properties",
+								"conveyorSpeed"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "conveyorSpeed",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "simu4",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "simu4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "0",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ci.mines-stetienne.fr/simu/packagingWorkshop/properties/conveyorSpeed",
+							"protocol": "https",
+							"host": [
+								"ci",
+								"mines-stetienne",
+								"fr"
+							],
+							"path": [
+								"simu",
+								"packagingWorkshop",
+								"properties",
+								"conveyorSpeed"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pressEmergencyStop",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "simu4",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "simu4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://ci.mines-stetienne.fr/simu/robotArm/actions/pressEmergencyStop",
+							"protocol": "https",
+							"host": [
+								"ci",
+								"mines-stetienne",
+								"fr"
+							],
+							"path": [
+								"simu",
+								"robotArm",
+								"actions",
+								"pressEmergencyStop"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "conveyorHeadStatus",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "simu4",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "simu4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[0,1]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ci.mines-stetienne.fr/simu/packagingWorkshop/properties/conveyorHeadStatus",
+							"protocol": "https",
+							"host": [
+								"ci",
+								"mines-stetienne",
+								"fr"
+							],
+							"path": [
+								"simu",
+								"packagingWorkshop",
+								"properties",
+								"conveyorHeadStatus"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "dairyProductProvider",
+			"item": [
+				{
+					"name": "order",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "simu4",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "simu4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "3",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ci.mines-stetienne.fr/simu/dairyProductProvider/actions/order",
+							"protocol": "https",
+							"host": [
+								"ci",
+								"mines-stetienne",
+								"fr"
+							],
+							"path": [
+								"simu",
+								"dairyProductProvider",
+								"actions",
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "readAll",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "simu4",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "simu4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://ci.mines-stetienne.fr/simu/dairyProductProvider/all/properties",
+							"protocol": "https",
+							"host": [
+								"ci",
+								"mines-stetienne",
+								"fr"
+							],
+							"path": [
+								"simu",
+								"dairyProductProvider",
+								"all",
+								"properties"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "cupProvider",
+			"item": [
+				{
+					"name": "order",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "simu4",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "simu4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "3",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ci.mines-stetienne.fr/simu/cupProvider/actions/order",
+							"protocol": "https",
+							"host": [
+								"ci",
+								"mines-stetienne",
+								"fr"
+							],
+							"path": [
+								"simu",
+								"cupProvider",
+								"actions",
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "orderPackages",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "simu4",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "simu4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "3",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ci.mines-stetienne.fr/simu/cupProvider/actions/orderPackages",
+							"protocol": "https",
+							"host": [
+								"ci",
+								"mines-stetienne",
+								"fr"
+							],
+							"path": [
+								"simu",
+								"cupProvider",
+								"actions",
+								"orderPackages"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "storageRack",
+			"item": [
+				{
+					"name": "stackLightStatus",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "simu4",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "simu4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://ci.mines-stetienne.fr/simu/storageRack/properties/stackLightStatus",
+							"protocol": "https",
+							"host": [
+								"ci",
+								"mines-stetienne",
+								"fr"
+							],
+							"path": [
+								"simu",
+								"storageRack",
+								"properties",
+								"stackLightStatus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "capacity",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "simu4",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "simu4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://ci.mines-stetienne.fr/simu/storageRack/properties/capacity",
+							"protocol": "https",
+							"host": [
+								"ci",
+								"mines-stetienne",
+								"fr"
+							],
+							"path": [
+								"simu",
+								"storageRack",
+								"properties",
+								"capacity"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "positionX",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "simu4",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "simu4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://ci.mines-stetienne.fr/simu/storageRack/properties/positionX",
+							"protocol": "https",
+							"host": [
+								"ci",
+								"mines-stetienne",
+								"fr"
+							],
+							"path": [
+								"simu",
+								"storageRack",
+								"properties",
+								"positionX"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "positionZ",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "simu4",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "simu4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://ci.mines-stetienne.fr/simu/storageRack/properties/positionZ",
+							"protocol": "https",
+							"host": [
+								"ci",
+								"mines-stetienne",
+								"fr"
+							],
+							"path": [
+								"simu",
+								"storageRack",
+								"properties",
+								"positionZ"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "clampStatus",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "simu4",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "simu4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://ci.mines-stetienne.fr/simu/storageRack/properties/clampStatus",
+							"protocol": "https",
+							"host": [
+								"ci",
+								"mines-stetienne",
+								"fr"
+							],
+							"path": [
+								"simu",
+								"storageRack",
+								"properties",
+								"clampStatus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "conveyorSpeed",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "simu4",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "simu4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://ci.mines-stetienne.fr/simu/storageRack/properties/conveyorSpeed",
+							"protocol": "https",
+							"host": [
+								"ci",
+								"mines-stetienne",
+								"fr"
+							],
+							"path": [
+								"simu",
+								"storageRack",
+								"properties",
+								"conveyorSpeed"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "conveyorSpeed",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "simu4",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "simu4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "0.5",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ci.mines-stetienne.fr/simu/storageRack/properties/conveyorSpeed",
+							"protocol": "https",
+							"host": [
+								"ci",
+								"mines-stetienne",
+								"fr"
+							],
+							"path": [
+								"simu",
+								"storageRack",
+								"properties",
+								"conveyorSpeed"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pressEmergencyStop",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "simu4",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "simu4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://ci.mines-stetienne.fr/simu/robotArm/actions/pressEmergencyStop",
+							"protocol": "https",
+							"host": [
+								"ci",
+								"mines-stetienne",
+								"fr"
+							],
+							"path": [
+								"simu",
+								"robotArm",
+								"actions",
+								"pressEmergencyStop"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pickItem",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "simu4",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "simu4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[0,1]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ci.mines-stetienne.fr/simu/storageRack/actions/pickItem",
+							"protocol": "https",
+							"host": [
+								"ci",
+								"mines-stetienne",
+								"fr"
+							],
+							"path": [
+								"simu",
+								"storageRack",
+								"actions",
+								"pickItem"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "factory",
+			"item": [
+				{
+					"name": "deliveryBook",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "simu4",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "simu4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://ci.mines-stetienne.fr/simu/factory/properties/deliveryBook",
+							"protocol": "https",
+							"host": [
+								"ci",
+								"mines-stetienne",
+								"fr"
+							],
+							"path": [
+								"simu",
+								"factory",
+								"properties",
+								"deliveryBook"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deliveryBook",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "simu4",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "simu4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": \"dairy\",\r\n    \"date\": \"2021-07-29T13:00:38.681Z\",\r\n    \"quantity\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ci.mines-stetienne.fr/simu/factory/properties/deliveryBook",
+							"protocol": "https",
+							"host": [
+								"ci",
+								"mines-stetienne",
+								"fr"
+							],
+							"path": [
+								"simu",
+								"factory",
+								"properties",
+								"deliveryBook"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "shippingBook",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "simu4",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "simu4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://ci.mines-stetienne.fr/simu/factory/properties/shippingBook",
+							"protocol": "https",
+							"host": [
+								"ci",
+								"mines-stetienne",
+								"fr"
+							],
+							"path": [
+								"simu",
+								"factory",
+								"properties",
+								"shippingBook"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "shippingBook",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "simu4",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "simu4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\": \"2021-07-29T12:06:00.568Z\",\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ci.mines-stetienne.fr/simu/factory/properties/shippingBook",
+							"protocol": "https",
+							"host": [
+								"ci",
+								"mines-stetienne",
+								"fr"
+							],
+							"path": [
+								"simu",
+								"factory",
+								"properties",
+								"shippingBook"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reset",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "simu4",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "simu4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://ci.mines-stetienne.fr/simu/factory/actions/reset",
+							"protocol": "https",
+							"host": [
+								"ci",
+								"mines-stetienne",
+								"fr"
+							],
+							"path": [
+								"simu",
+								"factory",
+								"actions",
+								"reset"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
