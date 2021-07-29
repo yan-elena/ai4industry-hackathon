@@ -70,27 +70,27 @@ thing(fillingWorkshop,Thing) :-
     //  ?locationOfInputMaterial(Name,CIX,CIY,CIZ);
     //  ?locationOfOutputProduct(Name,COX,COY,COZ);
     !getDescription(Name);
-    !testStatus(Name);
+    //!testStatus(Name);
     
     // Not necessary to get all of them regularly. 
     // Choose and comment, otherwise there is a risk of
     // consuming all the computing resources
-    !observeTankLevel(Name);
-    !observeConveyorSpeed(Name);
-    !observeConveyorHeadStatus(Name);
-    !observeOpticalSensorStatus(Name);
-    !observeMagneticValveStatus(Name);
-    !observePositionX(Name);
-    !observeStackLightStatus(Name);
+    //!observeTankLevel(Name);
+    //!observeConveyorSpeed(Name);
+    //!observeConveyorHeadStatus(Name);
+    //!observeOpticalSensorStatus(Name);
+    //!observeMagneticValveStatus(Name);
+    //!observePositionX(Name);
+    //!observeStackLightStatus(Name);
     
     ?conveyorSpeed(Name,IS);
     if (IS == 0) {
       !changeConveyorSpeed(Name,0.5);
     }
-    
+  
     !fillItems(Name);
 
-    !testStatus(Name);
+    //!testStatus(Name);
   .
 
 +!run(Name) :

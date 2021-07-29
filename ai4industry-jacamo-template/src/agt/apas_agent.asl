@@ -59,17 +59,17 @@ thing(boschApas,Thing) :-
 
     !getDescription(Name);
 
-    !testStatus(Name);
+    //!testStatus(Name);
 
     // Not necessary to get all of them regularly. 
     // Choose and comment, otherwise there is a risk of
     // consuming all the computing resources
-    !observeInMovement(Name);
-    !observeGrasping(Name);
+    //!observeInMovement(Name);
+    //!observeGrasping(Name);
 
     !potItems(Name);
 
-    !testStatus(Name);
+    //!testStatus(Name);
   .
 
 +!run(Name) :

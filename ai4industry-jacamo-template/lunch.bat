@@ -1,0 +1,1 @@
+D:\Study\PhD\summerSchool\2021_07_28\hypermedea-0.1\hypermedea-0.1\bin\hypermedea.bat ai4industry_jacamo.jcm

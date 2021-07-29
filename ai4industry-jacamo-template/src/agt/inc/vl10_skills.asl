@@ -3,6 +3,10 @@
 @author Olivier Boissier (Mines Saint-Etienne)
 */
 
+//Belief
+
+currentPick(0).
+
 // plan for testing the status of the Thing by accessing the property affordances
 +!testStatus(Name) : true <-
     ?stackLightStatus(Name,LightValue);
@@ -41,6 +45,53 @@
     .println("acted on ",Name," to act on ",Thing," with operation ",ActionName);
 .
 // Plan for calling the picking an item action affordance
+
++!lunchPicking(Name) : currentPick(X) & provider(Provider)
+  <- 
+  if (X < 24) {
+    !pickItem(Name,[math.floor(X /5),(X mod 5)]);
+     -+currentPick(X+1);
+     .wait(7000);
+     !lunchPicking(Name);
+    }
+    else {
+      -+currentPick(0);
+      .send(Provider,achieve,order(24));
+      .println("I have sent an order to the cup provider and I am waiting !!!!!!!!!!");
+      .wait(7000);
+      !lunchPicking(Name);
+      }
+      
+.
+
++!pickItem(Name,To) :
+    thing(Name,Thing)
+    & move_from_to_action(Thing,ActionName)
+    <-
+    .println("acting on ",Name," to act on ",Thing," with operation ",ActionName," with parameter ", To);
+    invokeAction(ActionName,To)[artifact_name(Name)];
+    .println("acted on ",Name," to act on ",Thing," with operation ",ActionName," with parameter ", To);
+  .
+
+-!pickItem(Name,To) :
+    thing(Name,Thing)
+    & move_from_to_action(Thing,MActionName)
+    & provider(Provider)
+    <-
+    ?clampStatus(Name,Value);
+    .println("Error in picking Item at ",To, " clamp status is ",Value);
+    if (Value) {
+      .println("A cup is on the cup provider and I am waiting !!!!!!!!!!");
+    }
+    /*
+    else {
+      //.send(Provider,achieve,order(25));
+      .println("I have sent an order to the cup provider and I am waiting !!!!!!!!!!");
+      }
+      */
+    .wait(100);
+.
+/*
 +!pickItem(Name,To) :
     thing(Name,Thing)
     & move_from_to_action(Thing,ActionName)
@@ -66,7 +117,7 @@
       }
     .wait(4000);
   .
-
+*/
 /************************/
 // Plan for requesting the value of the stackLightStatus property affordance
 +?stackLightStatus(Name,Value) :
