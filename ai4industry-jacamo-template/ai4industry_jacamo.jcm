@@ -27,7 +27,7 @@ mas itm_factory_mas {
         beliefs:    entryPoint("https://ci.mines-stetienne.fr/kg/")     // entry point to the KG
                     name(dairyProductProvider)                          // name of the thing controled by the agent
                     credentials("simu2","simu2")                        // credentials to access the thing  
-        //goals:      start                                               // initial goal. Comment to make agent inactive
+        goals:      start                                               // initial goal. Comment to make agent inactive
         join:       itm_factory_workspace                               // working environment for the agent
         focus:      itm_factory_workspace.ldfu_spider                   // focus on the ldfu_spider at init time
         }
@@ -90,7 +90,7 @@ mas itm_factory_mas {
                     timer(1000)                                         // time interval for the polling of values of the thing properties
                     initialSpeed(0.5)                                   // initial speed of the conveyor
                     provider(cup_provider)                              // name of the agent providing packages
-        //goals:      start                                               // initial goal. Comment to make agent inactive
+        goals:      start                                               // initial goal. Comment to make agent inactive
         join:       itm_factory_workspace                               // working environment for the agent
         focus:      itm_factory_workspace.ldfu_spider
         }

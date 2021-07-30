@@ -75,22 +75,22 @@ thing(fillingWorkshop,Thing) :-
     // Not necessary to get all of them regularly. 
     // Choose and comment, otherwise there is a risk of
     // consuming all the computing resources
-    //!observeTankLevel(Name);
-    //!observeConveyorSpeed(Name);
-    //!observeConveyorHeadStatus(Name);
-    //!observeOpticalSensorStatus(Name);
-    //!observeMagneticValveStatus(Name);
-    //!observePositionX(Name);
-    //!observeStackLightStatus(Name);
-    
+    !observeTankLevel(Name);
+    !observeConveyorSpeed(Name);
+    !observeConveyorHeadStatus(Name);
+    !observeOpticalSensorStatus(Name);
+    !observeMagneticValveStatus(Name);
+    !observePositionX(Name);
+    !observeStackLightStatus(Name);
+ 
+  
+    !fillItems(Name);
+   
     ?conveyorSpeed(Name,IS);
     if (IS == 0) {
       !changeConveyorSpeed(Name,0.5);
     }
-  
-    !fillItems(Name);
-
-    //!testStatus(Name);
+    !testStatus(Name);
   .
 
 +!run(Name) :
@@ -105,7 +105,7 @@ thing(fillingWorkshop,Thing) :-
     thing(Name,Thing)
     <-
     ?tankLevel(Name,Emp);
-    .println("EMpty ",Emp);
+    .println("tank level = ",Emp);
     if (Emp < 0.5) {
     	.println("The tank is empty.");
     	.send(dairy_product_provider,achieve,order(3));
@@ -114,6 +114,8 @@ thing(fillingWorkshop,Thing) :-
     .wait(1000);
     !!fillItems(Name)
   .
+
+
 
 // TO BE COMPLETED ....
 
