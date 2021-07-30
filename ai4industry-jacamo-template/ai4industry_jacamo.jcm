@@ -2,7 +2,7 @@ mas itm_factory_mas {
 
 // Agent for controlling and testing the TD via the ThingArtifact
     agent controller {
-        beliefs:    credentials("simu2","simu2")                        // credentials to access the thing
+        beliefs:    credentials("simu1","simu1")                        // credentials to access the thing
         //goals:      start                                               // initial goal. Comment to make agent inactive
         join:       itm_factory_workspace                               // working environment for the agent
         focus:      itm_factory_workspace.test_vl10                     
@@ -16,7 +16,7 @@ mas itm_factory_mas {
     agent cup_provider {
         beliefs:    entryPoint("https://ci.mines-stetienne.fr/kg/")     // entry point to the KG
                     name(cupProvider)                                   // name of the thing controled by the agent
-                    credentials("simu2","simu2")                        // credentials to access the thing  
+                    credentials("simu1","simu1")                        // credentials to access the thing  
         goals:      start                                               // initial goal. Comment to make agent inactive
         join:       itm_factory_workspace                               // working environment for the agent
         focus:      itm_factory_workspace.ldfu_spider                   
@@ -26,8 +26,8 @@ mas itm_factory_mas {
      agent dairy_product_provider {
         beliefs:    entryPoint("https://ci.mines-stetienne.fr/kg/")     // entry point to the KG
                     name(dairyProductProvider)                          // name of the thing controled by the agent
-                    credentials("simu2","simu2")                        // credentials to access the thing  
-        //goals:      start                                               // initial goal. Comment to make agent inactive
+                    credentials("simu1","simu1")                        // credentials to access the thing  
+        goals:      start                                               // initial goal. Comment to make agent inactive
         join:       itm_factory_workspace                               // working environment for the agent
         focus:      itm_factory_workspace.ldfu_spider                   // focus on the ldfu_spider at init time
         }
@@ -38,7 +38,7 @@ mas itm_factory_mas {
         beliefs:    entryPoint("https://ci.mines-stetienne.fr/kg/")     // entry point to the KG
                     name(leubot2)                                       // name of the thing controled by the agent
                     api_key("KEYAPIS")                                  // api key for using the leubot robot. Fix it
-        //goals:      start                                               // initial goal. Comment to make agent inactive
+        goals:      start                                               // initial goal. Comment to make agent inactive
         join:       itm_factory_workspace                               // working environment for the agent
         focus:      itm_factory_workspace.ldfu_spider
     }
@@ -48,7 +48,7 @@ mas itm_factory_mas {
    agent vl10_agent {
         beliefs:    entryPoint("https://ci.mines-stetienne.fr/kg/")     // entry point to the KG
                     name(storageRack)                                   // name of the thing controled by the agent
-                    credentials("simu2","simu2")                        // credentials to access the thing  
+                    credentials("simu1","simu1")                        // credentials to access the thing  
                     timer(1000)                                         // time interval for the polling of values of the thing properties
                     initialSpeed(0.5)                                   // initial speed of the conveyor
                     provider(cup_provider)                              // name of the agent providing cups
@@ -61,7 +61,7 @@ mas itm_factory_mas {
     agent dx10_agent {
         beliefs:    entryPoint("https://ci.mines-stetienne.fr/kg/")     // entry point to the KG
                     name(fillingWorkshop)                               // name of thing controled by the agent
-                    credentials("simu2","simu2")                        // credentials to access the thing
+                    credentials("simu1","simu1")                        // credentials to access the thing
                     timer(1000)                                         // time interval for the polling of values of the thing properties
                     initialSpeed(0.5)                                   // initial speed of the conveyor
                     provider(dairy_product_provider)                    // name of the agent providing dairy product
@@ -74,9 +74,9 @@ mas itm_factory_mas {
     agent apas_agent {
         beliefs:    entryPoint("https://ci.mines-stetienne.fr/kg/")     // entry point to the KG
                     name(boschApas)                                     // name of the thing controled by the agent
-                    credentials("simu2","simu2")                        // credentials to access the thing
+                    credentials("simu1","simu1")                        // credentials to access the thing
                     timer(1000)                                         // time interval for the polling of values of the thing properties
-        //goals:      start                                               // initial goal. Comment to make agent inactive
+        goals:      start                                               // initial goal. Comment to make agent inactive
         join:       itm_factory_workspace                               // working environment for the agent
         focus:      itm_factory_workspace.ldfu_spider
         }
@@ -86,11 +86,11 @@ mas itm_factory_mas {
     agent xy10_agent {
         beliefs:    entryPoint("https://ci.mines-stetienne.fr/kg/")     // entry point to the KG
                     name(packagingWorkshop)                             // name of the thing controled by the agent
-                    credentials("simu2","simu2")                        // credentials to access the thing
+                    credentials("simu1","simu1")                        // credentials to access the thing
                     timer(1000)                                         // time interval for the polling of values of the thing properties
                     initialSpeed(0.5)                                   // initial speed of the conveyor
                     provider(cup_provider)                              // name of the agent providing packages
-        //goals:      start                                               // initial goal. Comment to make agent inactive
+        goals:      start                                               // initial goal. Comment to make agent inactive
         join:       itm_factory_workspace                               // working environment for the agent
         focus:      itm_factory_workspace.ldfu_spider
         }

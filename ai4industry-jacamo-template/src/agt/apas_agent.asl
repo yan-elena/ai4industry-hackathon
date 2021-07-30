@@ -93,7 +93,7 @@ thing(boschApas,Thing) :-
     & location_packaging(Lp)
     <-
     !carry(Name,Lc,Lp);
-    .wait(1000);
+    //.wait(1000);
     !!potItems(Name);
   .
 
@@ -102,6 +102,10 @@ thing(boschApas,Thing) :-
     true
     <-
     .println("carrying a pot from ",From," to ",To);
+    !move(Name,From);
+    !grasp(Name,none);
+    !move(Name,To); 
+    !release(Name,none);
   .
 
 +!observeInMovement(Name) :

@@ -51,17 +51,17 @@ currentPick(0).
   if (X < 24) {
     !pickItem(Name,[math.floor(X /5),(X mod 5)]);
      -+currentPick(X+1);
-     .wait(7000);
+      .wait(4000);   
      !lunchPicking(Name);
     }
-    else {
+  else {
       -+currentPick(0);
-      .send(Provider,achieve,order(24));
+      .send(Provider,achieve,order(25));
       .println("I have sent an order to the cup provider and I am waiting !!!!!!!!!!");
-      .wait(7000);
+      .wait(4000);   
       !lunchPicking(Name);
       }
-      
+ 
 .
 
 +!pickItem(Name,To) :
@@ -89,7 +89,7 @@ currentPick(0).
       .println("I have sent an order to the cup provider and I am waiting !!!!!!!!!!");
       }
       */
-    .wait(100);
+    .wait(4000);
 .
 /*
 +!pickItem(Name,To) :

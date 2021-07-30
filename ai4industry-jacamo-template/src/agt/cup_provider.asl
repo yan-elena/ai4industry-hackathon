@@ -78,6 +78,23 @@ thing(cupProvider,Thing) :-
     .println("acted on ",Name," to act on ",Thing," with parameter ",Value," on operation ", ActionName);
   .
 
++!orderPackages(Value)[source(Sender)] :
+    true
+    <-
+    //!orderPackages(cupProvider,Value);
+    .println("processed order and sending message to ",Sender);
+    .send(Sender,tell,done(orderPackages));
+  .
+
++!orderPackages(Name,Value) :
+    thing(Name,Thing)
+    & order_packages_action(Thing,ActionName)
+    <-
+    .println("acting on ",Name," to act on ",Thing," with parameter ",Value," on operation ", ActionName);
+    invokeAction(ActionName,Value)[artifact_name(Name)];
+    .println("acted on ",Name," to act on ",Thing," with parameter ",Value," on operation ", ActionName);
+  .
+/*
 +!orderPackages(Name) :
     thing(Name,Thing)
     & order_packages_action(Thing,ActionName)
@@ -86,7 +103,7 @@ thing(cupProvider,Thing) :-
     invokeAction(ActionName)[artifact_name(Name)];
     .println("acted on ",Name," to act on ",Thing," on operation ", ActionName);
   .
-
+*/
 { include("inc/owl-signature.asl") }
 { include("inc/common.asl") }
 

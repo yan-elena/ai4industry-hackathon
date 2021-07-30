@@ -87,25 +87,31 @@ thing(fillingWorkshop,Thing) :-
     if (IS == 0) {
       !changeConveyorSpeed(Name,0.5);
     }
-  
-    !fillItems(Name);
 
     //!testStatus(Name);
+    !fillItems(Name);
   .
 
 +!run(Name) :
     true
     <-
-    .wait(100);
+    .wait(1000);
     !!run(Name).
 
-// Fake plan. Adapt.
+// Filling Tank
 +!fillItems(Name) :
-    thing(Name,Thing)
+    thing(Name,Thing) & provider(Provider)
     <-
-    .println("is filling Item.");
-    .wait(1000);
+    //<0.4
+    ?tankLevel(Name,TankLevel);
+    if (TankLevel <= 0.4) {
+      .println("Filling Tank.");
+      .send(Provider,achieve,order(2));
+    }
+    .wait(2000);
+    !fillItems(Name);
   .
+
 
 // TO BE COMPLETED ....
 

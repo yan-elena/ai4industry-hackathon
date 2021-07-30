@@ -109,6 +109,8 @@
 
 /***************/
 
+
+
 // Plan for observing the value of the stackLightStatus property affordance
 +!observeStackLightStatus(Name):
     timer(Timer)

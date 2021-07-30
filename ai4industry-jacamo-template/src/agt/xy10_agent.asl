@@ -77,13 +77,13 @@ thing(packagingWorkshop,Thing) :-
     // Not necessary to get all of them regularly. 
     // Choose and comment, otherwise there is a risk of
     // consuming all the computing resources
-    !observeStackLightStatus(Name);
-    !observeConveyorSpeed(Name); 
-    !observePackageBuffer(Name);
-    !observeOpticalSensorPackage(Name);
-    !observeOpticalSensorContainer1(Name);
-    !observeOpticalSensorContainer2(Name);
-    !observeConveyorHeadStatus(Name);
+    //!observeStackLightStatus(Name);
+    //!observeConveyorSpeed(Name); 
+    //!observePackageBuffer(Name);
+    //!observeOpticalSensorPackage(Name);
+    //!observeOpticalSensorContainer1(Name);
+    //!observeOpticalSensorContainer2(Name);
+    //!observeConveyorHeadStatus(Name);
 
     ?conveyorSpeed(Name,IS);
     if (IS == 0) {
@@ -91,7 +91,7 @@ thing(packagingWorkshop,Thing) :-
     }
     !packageItems(Name);
 
-    !testStatus(Name);
+    //!testStatus(Name);
   .
 
 +!run(Name) : 
@@ -101,13 +101,23 @@ thing(packagingWorkshop,Thing) :-
     !!run(Name);
   .
 
-// Fake plan. Adapt.
+
+// Plan for filling package
 +!packageItems(Name) :
-    thing(Name,Thing)
+    thing(Name,Thing) & provider(Provider)
     <-
-    .println("is packaging Item.");
-    .wait(1000);
+    //<=1
+    ?packageBuffer(Name,PackLevel);
+    if (PackLevel <= 9) {
+      .println("getting more packaging Item.");
+      .send(Provider,achieve,orderPackages(2));
+      .wait(5000);
+    }else{
+      .wait(5000);
+    }
+    !packageItems(Name);
   .
+
 
 // TO BE COMPLETED ....
 
