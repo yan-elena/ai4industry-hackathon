@@ -112,6 +112,6 @@ thing(packagingWorkshop,Thing) :-
 // TO BE COMPLETED ....
 
 { include("inc/xy10_skills.asl") }
-{ include("inc/owl-signature.asl") }
 { include("inc/common.asl") }
+
 { include("$jacamoJar/templates/common-cartago.asl") }

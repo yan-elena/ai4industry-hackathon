@@ -11,13 +11,19 @@ ldfu_spider using the ldfu artifact to crawl a KG
 /* Plans */
 
 +!start :
+    true
+    <-
+    // start crawling
+    !crawl ;
+    // ensure some KG statements were crawled
+    !countRDF ;
+  .
+
++!crawl :
     entryPoint(EntryPoint) // get the base where to consider the index.ttl
     <-
-    // starts crawling
-    crawl(EntryPoint) ;
-    .print("...... Finished crawling");
-    // executes tests
-    !countRDF ;
+    .print("Crawling starting from ", EntryPoint) ;
+    .print("[TODO]") ; 
   .
 
 // plan for counting the number of rdf beliefs
@@ -28,7 +34,6 @@ ldfu_spider using the ldfu artifact to crawl a KG
     .print("found ", Count, " triples.");
   .
 
-{ include("inc/owl-signature.asl") }
 { include("inc/common.asl") }
 
 { include("$jacamoJar/templates/common-cartago.asl") }

@@ -90,7 +90,7 @@ thing(storageRack,Thing) :-
     !!run(Name).
 
 // Conveying Items from the storage Rack to the conveyor
-// Fake plan. Adapt.
+// Stub plan. Adapt.
 +!conveyItems(Name) :
     thing(Name,Thing)
     <-
@@ -109,7 +109,6 @@ thing(storageRack,Thing) :-
 // TO BE COMPLETED ....
 
 { include("inc/vl10_skills.asl") }
-{ include("inc/owl-signature.asl") }
 { include("inc/common.asl") }
 
 { include("$jacamoJar/templates/common-cartago.asl") }

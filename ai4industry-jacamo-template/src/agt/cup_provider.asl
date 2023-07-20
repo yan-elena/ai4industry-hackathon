@@ -87,7 +87,6 @@ thing(cupProvider,Thing) :-
     .println("acted on ",Name," to act on ",Thing," on operation ", ActionName);
   .
 
-{ include("inc/owl-signature.asl") }
 { include("inc/common.asl") }
 
 { include("$jacamoJar/templates/common-cartago.asl") }

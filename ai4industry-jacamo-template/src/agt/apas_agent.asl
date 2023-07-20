@@ -153,7 +153,6 @@ thing(boschApas,Thing) :-
   .
 
 { include("inc/robot_arm_skills.asl") }
-{ include("inc/owl-signature.asl") }
 { include("inc/common.asl") }
 
 { include("$jacamoJar/templates/common-cartago.asl") }

@@ -103,7 +103,6 @@ location_packaging([3.2,0,1]). // relative position of packaging workshop
   .
 
 { include("inc/robot_arm_skills.asl") }
-{ include("inc/owl-signature.asl") }
 { include("inc/common.asl") }
 
 { include("$jacamoJar/templates/common-cartago.asl") }

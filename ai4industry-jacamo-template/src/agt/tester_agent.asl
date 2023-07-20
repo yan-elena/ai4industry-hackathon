@@ -19,8 +19,6 @@
             update(St1,St2,St3, Index, St4);
       .
 
-{ include("inc/owl-signature.asl") }
-
 { include("$jacamoJar/templates/common-cartago.asl") }
 { include("$jacamoJar/templates/common-moise.asl") }
 

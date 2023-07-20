@@ -8,37 +8,36 @@ Clone the project and follow [the configuration steps](https://gitlab.emse.fr/ai
 
 ## The Hypermedea Framework
 
-Hypermedea is an extension of JaCaMo that includes three types of artifacts:
+Hypermedea is an extension of JaCaMo that includes several types of artifacts. The main artifacts used in the hackathon are:
 
-1. A `LinkedDataFuSpider` artifact, offering the possibility to agents to `crawl` the Knowledge Graph from a starting point. Any agent focusing on this artifact will get the result of the crawl as beliefs.
-In the template project, this artifact is only used by the agent `ldfu_spider.asl` in `src/agt` and observed by all agents.
+1. A `LinkedDataArtifact`, offering agents the possibility to crawl the Knowledge Graph. Any agent focusing on this artifact will get the result of the crawl as beliefs.
+In the template project, this artifact is only used by the `ld_spider` agent (`ld_spider.asl`) in `src/agt` and observed by all agents.
 
-2. A `ThingArtifact`, kind of Thing Description browser artifact offering the possibility to agents to invoke a Thing's actions (`invokeAction`) and read/write its properties (`readProperty`/`writeProperty`). One more operation `observeProperty` makes possible for an agent to regularly update beliefs corresponding to readable property affordances.
+2. An `OntologyArtifact`, translating Knowledge Graph statements into predicates and performing reasoning, based on ontological knowledge.
 
-3. A `PlannerArtifact`, that can be used for planning with affordances offered by a (collection of) Thing(s). The artifact is a wrapper for a [PDDL planner](https://planning.wiki/).
+3. `ThingArtifact`s, kind of Thing Description browser artifact offering agents the possibility to interact with a Thing using high-level operations (`readProperty`, `writeProperty`, `invokeAction`, `subscribeEvent` and the special operation `observeProperty`).
+
+For more details, refer to the [Javadoc of Hypermedea's artifact classes](https://hypermedea.github.io/javadoc/latest/org/hypermedea/package-summary.html).
 
 ## Content and structure of the project folder
 
 The project folder contains:
 
-3.The agent `ldfu_spider` that crawls the knowledge graph using an instance of `LinkedDataFuSpider` artifact. A `template_agent` is also provided as a starting point for writing your code.
+1. Several agents in `src/agt`, including The agent `ld_spider` that crawls the knowledge graph using an instance of `LinkedDataArtifact` and the agent `template_agent` as a starting point for writing your code.
 
-4. The agent `leubot_agent.asl` (in `src/agt`) to be used to control the robot arm. The agents `cup_provider.asl` and `dairy_product_provider.asl` that are the basis for the control of the cup/packages and dairy product providers.
+3. A set of predefined Jason plans (in `src/agt/inc`) that can be included in the agents.
 
-5. A set of predefined Jason plans (in `src/agt/inc`) that can be included in the agents.
+4. The `ai4industry_jacamo.jcm` project file, which configures the multi-agent system to launch. Each time you create a new agent, you need to add it this `.jcm` file.
 
-6. The `ai4industry_jacamo.jcm` which is the file to be used and configured to launch the multi-agent system (It is used by gradle for the execution). Each time you create a new agent, you need to add it in this file as well as definition of initial beliefs.
+5. The `reset-simu` script, to reset the different simulated workshops (the argument of this script is the number of your group)
 
-7. A simple script `reset-simu` to reset the different simulated workshops (the argument of this script is the number of your group)
-
-8. The linked-data program `get.n3` that crawl the knowledge graph
-
-## Using ThingArtifacts
+## Using Thing Artifacts
 
 You are provided with an implementation of a CArtAgO artifact that can retrieve, interpret, and use a W3C WoT TD to interact with the described Thing. A Jason agent can create a `ThingArtifact` as follows:
 
 ```
-makeArtifact("forkliftRobot", "org.hypermedea.ThingArtifact", [Url, true], ArtId);
+makeArtifact("forkliftRobot", "org.hypermedea.ThingArtifact", [URL, true], ArtId);
+focus(ArtId);
 ```
 
 The `ThingArtifact` takes two initialization parameters:
@@ -51,40 +50,46 @@ The `ThingArtifact` can use an [APIKeySecurityScheme](https://www.w3.org/TR/wot-
 setAPIKey(Token)[artifact_name("forkliftRobot")];
 ```
 
-The `ThingArtifact` provides agents with 3 additional CArtAgO operations: `readProperty`, `writeProperty`, and `invokeAction`, which correspond to operation types defined by the W3C WoT TD recommendation.
+The `ThingArtifact` also provides agents with CArtAgO operations that correspond to operation types defined by the W3C WoT TD recommendation, such as `writeProperty`, `writeProperty` or `invokeAction`.
 
 The general invocation style of `writeProperty` and `invokeAction` is as follows (see also the Javadoc comments):
 
 ```
-writeProperty|invokeAction ( <semantic type of affordance>, [ <optional: list of semantic types for object properties> ], [ <list of Jason terms, can be arbitrarily nested> ] )
+<operation type>(
+  <affordance name>,
+  [ <list of Jason terms, can be arbitrarily nested> ]
+)
 ```
 
 Example for writing a TD property of a `BooleanSchema` type:
 
 ```
-writeProperty("http://example.org/Status", [true])[artifact_name("forkliftRobot")];
+writeProperty("status", [true])[artifact_name("forkliftRobot")];
 ```
 
 Example for invoking a TD action with an `ArraySchema` payload:
 
 ```
-invokeAction("http://example.org/MoveTo", [30, 60, 70])[artifact_name("forkliftRobot")];
+invokeAction("moveTo", [30, 60, 70])[artifact_name("forkliftRobot")];
 ```
 
 Example for invoking a TD action with an `ObjectSchema` payload:
 
 ```
-invokeAction("http://example.org/CarryFromTo",
-    ["http://example.org/SourcePosition", "http://example.org/TargetPosition"],
-    [[30, 50, 70], [30, 60, 70]]
-  )[artifact_name("forkliftRobot")];
+invokeAction(
+  "carryFromTo",
+  json([
+    kv("from", [30, 50, 70]),
+    kv("to", [30, 60, 70])
+  ])
+)[artifact_name("forkliftRobot")];
 ```
 
 A TD property can be read in a similar manner, where `PositionValue` is a CArtAgO operation feedback parameter:
 
 ```
-readProperty("http://example.org/Position", PositionValue)[artifact_name("forkliftRobot")];
+readProperty("position", PositionValue)[artifact_name("forkliftRobot")];
 ```
 
-You can find more details about CArtAgO and the Jason to/from CArtAgO data binding [here](http://cartago.sourceforge.net/?page_id=47). You can find additional examples for using the `ThingArtifact` in a Jason program in `src/agt/wot_agent.asl`.
+You can find more details about CArtAgO and the Jason to/from CArtAgO data binding [here](http://cartago.sourceforge.net/?page_id=47). You can find additional information about the `ThingArtifact` [in its Javadoc](https://hypermedea.github.io/javadoc/latest/org/hypermedea/ThingArtifact.html).
 

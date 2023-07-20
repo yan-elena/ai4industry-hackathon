@@ -110,7 +110,6 @@ thing(fillingWorkshop,Thing) :-
 // TO BE COMPLETED ....
 
 { include("inc/dx10_skills.asl") }
-{ include("inc/owl-signature.asl") }
 { include("inc/common.asl") }
 
 { include("$jacamoJar/templates/common-cartago.asl") }
