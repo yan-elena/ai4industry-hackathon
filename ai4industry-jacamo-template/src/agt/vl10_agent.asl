@@ -1,11 +1,13 @@
 /* 
-vl10_agent controlling the Storage rack 
-It acts on a thing described by: https://ci.mines-stetienne.fr/kg/itmfactory/vl10
+Agent controlling the storage rack.
+
+It acts on a Thing described by:
+https://ci.mines-stetienne.fr/kg/itmfactory/vl10
 It has:
 - the following action affordances:
 -- pressEmergencyStop
 -- pickItem
-- the following property affordances
+- the following property affordances:
 -- positionX
 -- capacity
 -- positionZ
@@ -13,100 +15,71 @@ It has:
 -- clampStatus
 -- stackLightStatus
 
-@author Olivier Boissier (Mines Saint-Etienne)
+@author Olivier Boissier (Mines Saint-Etienne), Victor Charpenay (Mines Saint-Etienne)
 */
 
-/* Initial beliefs and rules */
-position(0,0). // X,Z cell in the storageRack
+/*
+An agent's state is roughly composed of beliefs (logical statements, as in Prolog) and goals (syntactically represented as atomic statements prefixed with '!'). The following line initializes the agent's state with a belief that gives what credentials it should use to interact with the VL10 workshop.
 
-thing(storageRack,Thing) :-
-    thing(Thing)
-    & platform(Thing)
-    & rdf(Thing, "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "http://www.productontology.org/id/Automated_storage_and_retrieval_system")
-    & has_action_affordance(Thing, PressEmergencyStop)
-    & stop_in_emergency_action(PressEmergencyStop)
-    & has_action_affordance(Thing, PickItem)
-    & move_from_to_action(PickItem)
-    & has_property_affordance(Thing, PositionX)
-    & x_coordinate(PositionX)
-    & has_property_affordance(Thing, PositionZ)
-    & z_coordinate(PositionZ)
-    & has_property_affordance(Thing, Capacity)
-    & maximum_count(Capacity)
-    & has_property_affordance(Thing, ConveyorSpeed)
-    & conveyor_speed(ConveyorSpeed)
-    & has_property_affordance(Thing,ClampStatus)
-    & boolean_schema(ClampStatus)
-    & name(ClampStatus,"clampStatus")
-    & has_property_affordance(Thing,StackLightStatus)
-    & name(StackLightStatus,"stackLightStatus")
-  .
+TODO: replace N with your group number (to obtain e.g. "simu1", "simu2", etc).
+*/
+credentials("simuN", "simuN") .
 
-/* Initial goals */
+/*
+Entry point of vl10_agent's program.
 
-/* Plans */
+An agent program (in the Jason/AgentSpeak language) is mostly composed of a set of plans. A plan has the following structure:
 
+triggering_event : guard_condition <- action ; action ; ... action .
+
+The following plan has the guard condition that the agent knows (or, rather, believes) some credentials. Its triggering event is the addition of !start to the list of goals of the agents (remember that goals start with '!'). Once the event occurs, the plan states that the agent will achieve goal !start if it executes two actions in sequence: setAuthCredentials() and !run.
+*/
 +!start :
-    name(Name) <-
-    .println("Belief base is under initialization");
-    !!run(Name);
+    credentials(Username, Password)
+    <-
+    /*
+    setAuthCredentials is a boilerplate action so that the WoT TD library used by Hypermedea remembers the given credentials for subsequent operations. 
+    */
+    setAuthCredentials(Username, Password);
+    /*
+    This pseudo-action generates an event of the form +!run, triggering the plan defined below.
+    */
+    !run;
   .
 
-+!run(Name) : thing(Name,Thing) <-
-    .print("Found suitable storage rack: ", Thing) ;
-    // To initialize the ThingArtifact in a dryRun mode (requests are printed but not executed)
-    // makeArtifact(Name, "org.hypermedea.ThingArtifact", [Thing, false], ArtId);
-    // .println("PAY ATTENTION: I am in dryRun=True mode");
-    // When no parameter, dryRun is false by default.
-    makeArtifact(Name, "org.hypermedea.ThingArtifact", [Thing], ArtId);
-    focus(ArtId);
-     // set credentials to access the Thing (DX10 workshop of the IT'm factory)
-    ?credentials(SimuName,SimuPasswd);
-    setAuthCredentials(SimuName, SimuPasswd)[artifact_id(ArtId)] ;
-
-    ?locationOfOutputProduct(Name,COX,COY,COZ);
-    !getDescription(Name);
-    !testStatus(Name);
-
-    // Not necessary to get all of them regularly. 
-    // Choose and comment, otherwise there is a risk of
-    // consuming all the computing resources
-    !observeStackLightStatus(Name);
-    !observeCapacity(Name);  
-    !observePositionX(Name); 
-    !observePositionZ(Name); 
-    !observeClampStatus(Name);
-    !observeConveyorSpeed(Name); 
-   
-    !conveyItems(Name);
-
-    !testStatus(Name);
-  .
-
-+!run(Name) :
++!run :
+    /*
+    This plan has no guard condition.
+    */
     true
     <-
-    .wait(100);
-    !!run(Name).
-
-// Conveying Items from the storage Rack to the conveyor
-// Stub plan. Adapt.
-+!conveyItems(Name) :
-    thing(Name,Thing)
-    <-
-    .println("is conveying.");
-    .wait(1000);
+    /*
+    readProperty() is one of the WoT operations. For the VL10 workshop, this operation sends a GET request to the simulation server for the "conveyorSpeed" property and maps Val to the server's response payload (a real number). As in Prolog, Val is a variable in Jason because it starts with a capital letter.
+    */
+    readProperty("conveyorSpeed", Val);
+    /*
+    .print() is an "internal" action. All agents have some internal actions built in, as opposed to external actions that depend on the environment in which an agent is situated. See here for a list of internal actions:
+    
+    https://jason.sourceforge.net/api/jason/stdlib/package-summary.html
+    */
+    .print("Conveyor speed: ", Val);
+    /*
+    The agent should print "Conveyor speed: 0.0".
+    If you have an authentication error, see above (l. 26).
+    */
   .
 
+/*
+Exercises:
 
-// reactive plan triggered when the provider has sent the product
-+done(order)[source(Sender)] :
-    true
-    <-
-    .print("received the acknowledgment from ",Sender);
-  .
+1. Read all properties of the VL10 workshop.
 
-// TO BE COMPLETED ....
+2. A Jason plan can include control statements (if/while/for). Add a while (true) loop to constantly monitor the workshop's properties. Add a pause between each iteration with the .wait() internal action.
+
+3. Use writeProperty() to set conveyor speed to some value >0 and invokeAction() to pick items on the storage rack, repeatedly (at location [0, 0], [0, 1], ... [1, 0], [1, 1], ...). Once no item is in storage, the agent should wait until it is refilled. Examples of how to use WoT operations are provided in the template's README.
+
+Now you've got a first controller agent!
+*/
 
 { include("inc/vl10_skills.asl") }
 { include("inc/common.asl") }

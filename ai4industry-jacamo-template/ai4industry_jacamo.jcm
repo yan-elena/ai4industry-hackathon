@@ -3,7 +3,7 @@ mas itm_factory_mas {
 // Agent for controlling and testing the TD via the ThingArtifact
     agent controller {
         beliefs:    credentials("simu1","simu1")                        // credentials to access the thing
-        goals:      start                                               // initial goal. Comment to make agent inactive
+        // goals:      start                                               // initial goal. Uncomment to make agent active
         join:       itm_factory_workspace                               // working environment for the agent
         focus:      itm_factory_workspace.test_vl10                     
         focus:      itm_factory_workspace.test_dx10                     
@@ -16,7 +16,7 @@ mas itm_factory_mas {
         beliefs:    entryPoint("https://ci.mines-stetienne.fr/kg/")     // entry point to the KG
                     name(cupProvider)                                   // name of the thing controled by the agent
                     credentials("simu1","simu1")                        // credentials to access the thing  
-        goals:      start                                               // initial goal. Comment to make agent inactive
+        // goals:      start                                               // initial goal. Uncomment to make agent active
         join:       itm_factory_workspace                               // working environment for the agent
         focus:      itm_factory_workspace.ld_spider                   
         }
@@ -26,7 +26,7 @@ mas itm_factory_mas {
         beliefs:    entryPoint("https://ci.mines-stetienne.fr/kg/")     // entry point to the KG
                     name(dairyProductProvider)                          // name of the thing controled by the agent
                     credentials("simu1","simu1")                        // credentials to access the thing  
-        goals:      start                                               // initial goal. Comment to make agent inactive
+        // goals:      start                                               // initial goal. Uncomment to make agent active
         join:       itm_factory_workspace                               // working environment for the agent
         focus:      itm_factory_workspace.ld_spider                     // focus on the ldfu_spider at init time
         }
@@ -37,7 +37,7 @@ mas itm_factory_mas {
         beliefs:    entryPoint("https://ci.mines-stetienne.fr/kg/")     // entry point to the KG
                     name(leubot2)                                       // name of the thing controled by the agent
                     api_key("KEYAPIS")                                  // api key for using the leubot robot. Fix it
-        goals:      start                                               // initial goal. Comment to make agent inactive
+        // goals:      start                                               // initial goal. Uncomment to make agent active
         join:       itm_factory_workspace                               // working environment for the agent
         focus:      itm_factory_workspace.ld_spider
     }
@@ -47,13 +47,13 @@ mas itm_factory_mas {
    agent vl10_agent {
         beliefs:    entryPoint("https://ci.mines-stetienne.fr/kg/")     // entry point to the KG
                     name(storageRack)                                   // name of the thing controled by the agent
-                    credentials("simu1","simu1")                        // credentials to access the thing  
                     timer(1000)                                         // time interval for the polling of values of the thing properties
                     initialSpeed(0.5)                                   // initial speed of the conveyor
                     provider(cup_provider)                              // name of the agent providing cups
         goals:      start                                               // initial goal. Comment to make agent inactive
         join:       itm_factory_workspace                               // working environment for the agent
         focus:      itm_factory_workspace.ld_spider
+        focus:      itm_factory_workspace.vl10
         }
 
 // Agent for controling the Dosaxe Workshop / Filling workshop
@@ -64,7 +64,7 @@ mas itm_factory_mas {
                     timer(1000)                                         // time interval for the polling of values of the thing properties
                     initialSpeed(0.5)                                   // initial speed of the conveyor
                     provider(dairy_product_provider)                    // name of the agent providing dairy product
-        goals:      start                                               // initial goal. Comment to make agent inactive
+        // goals:      start                                               // initial goal. Uncomment to make agent active
         join:       itm_factory_workspace                               // working environment for the agent
         focus:      itm_factory_workspace.ld_spider
         }
@@ -75,7 +75,7 @@ mas itm_factory_mas {
                     name(boschApas)                                     // name of the thing controled by the agent
                     credentials("simu1","simu1")                        // credentials to access the thing
                     timer(1000)                                         // time interval for the polling of values of the thing properties
-        goals:      start                                               // initial goal. Comment to make agent inactive
+        // goals:      start                                               // initial goal. Uncomment to make agent active
         join:       itm_factory_workspace                               // working environment for the agent
         focus:      itm_factory_workspace.ld_spider
         }
@@ -89,7 +89,7 @@ mas itm_factory_mas {
                     timer(1000)                                         // time interval for the polling of values of the thing properties
                     initialSpeed(0.5)                                   // initial speed of the conveyor
                     provider(cup_provider)                              // name of the agent providing packages
-        goals:      start                                               // initial goal. Comment to make agent inactive
+        // goals:      start                                               // initial goal. Uncomment to make agent active
         join:       itm_factory_workspace                               // working environment for the agent
         focus:      itm_factory_workspace.ld_spider
         }
@@ -97,7 +97,7 @@ mas itm_factory_mas {
 // Agent for crawling the KG
     agent ld_spider {
         beliefs:    entryPoint("https://ci.mines-stetienne.fr/kg/")     // entry point to the KG
-        goals:      start                                               // initial goal. Comment to make agent inactive
+        // goals:      start                                               // initial goal. Uncomment to make agent active
         join:       itm_factory_workspace                               // working environment for the agent
         focus:      itm_factory_workspace.ld_spider
         }
@@ -110,6 +110,8 @@ mas itm_factory_mas {
         artifact test_xy10 : org.hypermedea.ThingArtifact("https://ci.mines-stetienne.fr/kg/itmfactory/xy10")                           // for test by controler agent
         artifact test_cupProvider : org.hypermedea.ThingArtifact("https://ci.mines-stetienne.fr/kg/cup-provider")                              // for test by controler agent
         artifact test_dairyProductProvider : org.hypermedea.ThingArtifact("https://ci.mines-stetienne.fr/kg/dairy-product-provider")       // for test by controler agent
+
+        artifact vl10 : org.hypermedea.ThingArtifact("https://ci.mines-stetienne.fr/kg/itmfactory/vl10")                           // to for vl10_agent
 
         artifact ld_spider : org.hypermedea.LinkedDataArtifact()          // for browsing RDF data
         artifact onto_mgr : org.hypermedea.OntologyArtifact()             // for managing OWL ontology signatures
