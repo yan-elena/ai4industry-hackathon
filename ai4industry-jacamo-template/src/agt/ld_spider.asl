@@ -1,5 +1,5 @@
 /* 
-ldfu_spider using the ldfu artifact to crawl a KG 
+ld_spider using the Linked Data artifact to crawl a KG 
 
 @author Olivier Boissier (Mines Saint-Etienne), Victor Charpenay (Mines Saint-Etienne)
 */

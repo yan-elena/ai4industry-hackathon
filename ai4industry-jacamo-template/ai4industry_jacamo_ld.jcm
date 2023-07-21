@@ -1,0 +1,16 @@
+mas itm_factory_mas {
+
+    // Agent for crawling the KG
+    agent ld_spider {
+        beliefs:    entryPoint("https://ci.mines-stetienne.fr/kg/")     // entry point to the KG
+        goals:      start                                               // initial goal. Comment to make agent inactive
+        join:       itm_factory_workspace                               // working environment for the agent
+        focus:      itm_factory_workspace.ld_spider
+    }
+
+    workspace itm_factory_workspace  {
+        artifact ld_spider : org.hypermedea.LinkedDataArtifact()          // for browsing RDF data
+        artifact onto_mgr : org.hypermedea.OntologyArtifact()             // for managing OWL ontology signatures
+    }
+
+}
