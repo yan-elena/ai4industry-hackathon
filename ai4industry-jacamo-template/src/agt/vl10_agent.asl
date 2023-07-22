@@ -50,7 +50,9 @@ Once the event occurs, the agent will therefore execute the two actions and remo
 
 +!readConveyorSpeed :
     /*
-    This plan has no guard condition.
+    This plan has no guard condition. Side note: when a plan has no guard condition, it can also be written as:
+
+    triggering_event <- action ; action ; ... action .
     */
     true
     <-
