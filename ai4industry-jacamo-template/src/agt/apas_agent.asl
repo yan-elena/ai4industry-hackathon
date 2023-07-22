@@ -57,7 +57,7 @@ thing(boschApas,Thing) :-
     ?has_origin_coordinates(Name,CX,CY,CZ);
     .println(Thing, " has origin coordinates ",CX," ",CY," ",CZ);
 
-    !getDescription(Name);
+    !getDescription(Thing);
 
     !testStatus(Name);
 

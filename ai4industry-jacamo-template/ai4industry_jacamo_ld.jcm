@@ -10,7 +10,6 @@ mas itm_factory_mas {
 
     workspace itm_factory_workspace  {
         artifact ld_spider : org.hypermedea.LinkedDataArtifact()          // for browsing RDF data
-        artifact onto_mgr : org.hypermedea.OntologyArtifact()             // for managing OWL ontology signatures
     }
 
 }

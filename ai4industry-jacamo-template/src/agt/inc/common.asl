@@ -249,7 +249,7 @@ grasping_property(Thing,PName) :-
     .println(Thing," is letting output material at ",CX," ",CY," ",CZ);
   .
 
-+!getDescription(Name) : thing(Name,Thing) <-
++!getDescription(Thing) : thing(Thing) <-
     .println("----------------------------------------------------");
     .findall(AN,has_action_affordance(Thing, AA) &  name(AA, AN),AL);
     .println(Thing," has the following action affordances ",AL);
