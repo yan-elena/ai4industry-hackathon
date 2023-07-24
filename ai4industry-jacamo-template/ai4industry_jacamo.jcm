@@ -31,18 +31,8 @@ mas itm_factory_mas {
         focus:      itm_factory_workspace.ld_spider                     // focus on the ldfu_spider at init time
     }
 
-    // agent leubot_agent
-    agent leubot_agent {
-        beliefs:    entryPoint("https://ci.mines-stetienne.fr/kg/")     // entry point to the KG
-                    name(leubot2)                                       // name of the thing controled by the agent
-                    api_key("KEYAPIS")                                  // api key for using the leubot robot. Fix it
-        goals:      start                                               // initial goal. Comment to make agent inactive
-        join:       itm_factory_workspace                               // working environment for the agent
-        focus:      itm_factory_workspace.ld_spider
-    }
-
     // Agent for controling the Conveying Workshop / Storage Rack
-   agent vl10_agent {
+    agent vl10_agent {
         beliefs:    entryPoint("https://ci.mines-stetienne.fr/kg/")     // entry point to the KG
                     name(storageRack)                                   // name of the thing controled by the agent
                     timer(1000)                                         // time interval for the polling of values of the thing properties
@@ -51,7 +41,6 @@ mas itm_factory_mas {
         goals:      start                                               // initial goal. Comment to make agent inactive
         join:       itm_factory_workspace                               // working environment for the agent
         focus:      itm_factory_workspace.ld_spider
-        focus:      itm_factory_workspace.vl10
     }
 
     // Agent for controling the Dosaxe Workshop / Filling workshop
@@ -108,7 +97,7 @@ mas itm_factory_mas {
         artifact test_dairyProductProvider : org.hypermedea.ThingArtifact("https://ci.mines-stetienne.fr/kg/dairy-product-provider")       // for test by controler agent
 
         artifact ld_spider : org.hypermedea.LinkedDataArtifact()          // for browsing RDF data
-        artifact onto_mgr : org.hypermedea.OntologyArtifact()             // for managing OWL ontology signatures
+        // artifact onto_mgr : org.hypermedea.OntologyArtifact()             // for managing OWL ontology signatures
     }
 
 }

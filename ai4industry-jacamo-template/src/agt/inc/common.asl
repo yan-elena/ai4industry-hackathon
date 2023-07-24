@@ -249,6 +249,13 @@ grasping_property(Thing,PName) :-
     .println(Thing," is letting output material at ",CX," ",CY," ",CZ);
   .
 
++!observeProperty(Name,PName,Timer) :
+    thing(Name,Thing) <-
+    readProperty(PName)[artifact_name(Name)];
+    .wait(Timer) ;
+    !!observeProperty(Name,PName,Timer) ;
+  .
+
 +!getDescription(Name) : thing(Name,Thing) <-
     .println("----------------------------------------------------");
     .findall(AN,has_action_affordance(Thing, AA) &  name(AA, AN),AL);
