@@ -5,7 +5,6 @@ mas itm_factory_mas {
         goals:      start                                               // initial goal. Comment to make agent inactive
         join:       itm_factory_workspace                               // working environment for the agent
         focus:      itm_factory_workspace.ld_spider
-        focus:      itm_factory_workspace.onto_mgr
     }
 
     workspace itm_factory_workspace  {
