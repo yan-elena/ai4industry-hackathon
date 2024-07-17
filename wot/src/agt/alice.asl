@@ -3,8 +3,8 @@ Alice is an agent. Its "cognitive" state is composed of
 - beliefs (atomic statements, as in Prolog) and
 - goals (atomic statements prefixed with '!' or '?').
 
-The following line initializes the agent's state with a belief that gives what credentials it should use to interact with the
-simulated manufacturing line.
+The following line initializes the agent's state with a belief that gives what 
+credentials it should use to interact with the simulated manufacturing line.
 
 TODO: replace N with your group number (to obtain e.g. "simu1", "simu2", etc).
 */
