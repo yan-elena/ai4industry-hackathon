@@ -1,24 +1,28 @@
 /*
- Dairy Product Provider agent
- Able to provide dairy product on request
+ Cup and Package Provider agent
+ Able to provide cups or packages on request
  It acts on a thing that has:
  - the following action affordances:
  -- order
+ -- orderPackages
  - has no property affordances
  - has the following event affordances:
  -- delivered
+ -- deliveredPackages
 
 @author Olivier Boissier (Mines Saint-Etienne)
 */
 
 /* Initial beliefs and rules */
 
-thing(dairyProductProvider,Thing) :-
+thing(cupProvider,Thing) :-
     thing(Thing)
     // TODO include signature from the Product Ontology
-    & rdf(Thing,"https://www.w3.org/2019/wot/td#title","dairy-product-provider")
-    & has_action_affordance(Thing, OrderDairy)
-    & name(OrderDairy,"order")
+    & rdf(Thing,"https://www.w3.org/2019/wot/td#title","cup-provider")
+    & order_action(Thing,_)
+    & order_packages_action(Thing,_)
+    & has_event_affordance(Thing,DeliveredPackages)
+    & name(DeliveredPackages,"deliveredPackages")
     & has_event_affordance(Thing,Delivered)
     & name(Delivered,"delivered")
   .
@@ -34,19 +38,11 @@ thing(dairyProductProvider,Thing) :-
     !!run(Name);
   .
 
-+!run(Name) : 
-  thing(Name,Thing)
-  <-
-    .print("found suitable dairy product provider: ", Thing) ;
-    // To initialize the ThingArtifact in a dryRun mode (requests are printed but not executed)
-    // makeArtifact(Name, "org.hypermedea.ThingArtifact", [Thing, false], ArtId);
-    // .println("PAY ATTENTION: I am in dryRun=True mode");
-    // When no parameter, dryRun is false by default.
-    makeArtifact(Name, "org.hypermedea.ThingArtifact", [Thing], ArtId);
-    focus(ArtId);
-    ?credentials(SimuName,SimuPasswd);
-    setAuthCredentials(SimuName, SimuPasswd)[artifact_id(ArtId)] ;
-    !getDescription(Thing);
++!run(Name) :
+    thing(Name,Thing)
+    <-
+    .print("found suitable cup and package provider: ", Thing) ;
+    !getDescription(Name);
 .
 
 +!run(Name) :
@@ -59,7 +55,7 @@ thing(dairyProductProvider,Thing) :-
 +!order(Value)[source(Sender)] :
     true
     <-
-    !order(dairyProductProvider,Value);
+    !order(cupProvider,Value);
     .println("processed order and sending message to ",Sender);
     .send(Sender,tell,done(order));
   .
@@ -69,8 +65,17 @@ thing(dairyProductProvider,Thing) :-
     & order_action(Thing,ActionName)
     <-
     .println("acting on ",Name," to act on ",Thing," with parameter ",Value," on operation ", ActionName);
-    invokeAction(ActionName,Value)[artifact_name(Name)];
+    !invokeAction(ActionName,Value)[artifact_name(Name)];
     .println("acted on ",Name," to act on ",Thing," with parameter ",Value," on operation ", ActionName);
+  .
+
++!orderPackages(Name) :
+    thing(Name,Thing)
+    & order_packages_action(Thing,ActionName)
+    <-
+    .println("acting on ",Name," to act on ",Thing," on operation ", ActionName);
+    !invokeAction(ActionName)[artifact_name(Name)];
+    .println("acted on ",Name," to act on ",Thing," on operation ", ActionName);
   .
 
 { include("inc/common.asl") }

@@ -27,7 +27,7 @@
     thing(Name,Thing)
     & conveyor_speed_property(Thing,PName)
     <-
-    writeProperty(PName,Value)[artifact_name(Name)];
+    !writeProperty(PName,Value)[artifact_name(Name)];
     .println("acted on ",Name," to request ",Thing," to change property ", PName, " with value ",Value);
   .
 
@@ -37,7 +37,7 @@
     & stop_in_emergency_action(Thing,ActionName)
     <-
     .println("acting on ",Name," to act on ",Thing," with operation ",ActionName);
-    invokeAction(ActionName)[artifact_name(Name)];
+    !invokeAction(ActionName)[artifact_name(Name)];
     .println("acted on ",Name," to act on ",Thing," with operation ",ActionName);
 .
 // Plan for calling the picking an item action affordance
@@ -46,7 +46,7 @@
     & move_from_to_action(Thing,ActionName)
     <-
     .println("acting on ",Name," to act on ",Thing," with operation ",ActionName," with parameter ", To);
-    invokeAction(ActionName,To)[artifact_name(Name)];
+    !invokeAction(ActionName,To)[artifact_name(Name)];
     .println("acted on ",Name," to act on ",Thing," with operation ",ActionName," with parameter ", To);
   .
 
@@ -73,7 +73,7 @@
     thing(Name,Thing)
     & stack_light_status_property(Thing,PName)
     <-
-    readProperty(PName,Value)[artifact_name(Name)];
+    !readProperty(PName,Value)[artifact_name(Name)];
     .println("acted on ",Name," to request ",Thing," for current value of ",PName," : ", Value);
   .
 // Plan for requesting the value of the capacity property affordance
@@ -81,7 +81,7 @@
     thing(Name,Thing)
     & capacity_property(Thing,PName)
     <-
-    readProperty(PName,Value)[artifact_name(Name)];
+    !readProperty(PName,Value)[artifact_name(Name)];
     .println("acted on ",Name," to request ",Thing," for current value of ",PName," : ", Value);
   .
 // Plan for requesting the value of the positionX property affordance
@@ -89,7 +89,7 @@
     thing(Name,Thing)
     & position_x_property(Thing,PName)
     <-
-    readProperty(PName,Value)[artifact_name(Name)];
+    !readProperty(PName,Value)[artifact_name(Name)];
     .println("acted on ",Name," to request ",Thing," for current value of ",PName," : ", Value);
   .
 // Plan for requesting the value of the positionZ property affordance
@@ -97,7 +97,7 @@
     thing(Name,Thing)
     & position_z_property(Thing,PName)
     <-
-    readProperty(PName,Value)[artifact_name(Name)];
+    !readProperty(PName,Value)[artifact_name(Name)];
     .println("acted on ",Name," to request ",Thing," for current value of ",PName," : ", Value);
   .
 // Plan for requesting the value of the clampStatus property affordance
@@ -105,7 +105,7 @@
     thing(Name,Thing)
     & clamp_status_property(Thing,PName)
     <-
-    readProperty(PName,Value)[artifact_name(Name)];
+    !readProperty(PName,Value)[artifact_name(Name)];
     .println("acted on ",Name," to request ",Thing," for current value of ",PName," : ", Value);
   .
 // Plan for requesting the value of the conveyorSpeed property affordance
@@ -113,7 +113,7 @@
     thing(Name,Thing)
     & conveyor_speed_property(Thing,PName)
     <-
-    readProperty(PName,Value)[artifact_name(Name)];
+    !readProperty(PName,Value)[artifact_name(Name)];
     .println("acted on ",Name," to request ",Thing," for current value of ",PName," : ", Value);
   .
 
@@ -210,3 +210,4 @@
     .println("conveyorSpeed is now ",X);
   .
 
+{ include("inc/common.asl") }

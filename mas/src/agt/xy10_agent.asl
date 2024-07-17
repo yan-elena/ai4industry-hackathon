@@ -59,19 +59,10 @@ thing(packagingWorkshop,Thing) :-
 
 +!run(Name) : thing(Name,Thing) <-
     .print("Found suitable Packaging : ", Thing) ;
-    // To initialize the ThingArtifact in a dryRun mode (requests are printed but not executed)
-    // makeArtifact(Name, "org.hypermedea.ThingArtifact", [Thing, false], ArtId);
-    // .println("PAY ATTENTION: I am in dryRun=True mode");
-    // When no parameter, dryRun is false by default.
-    makeArtifact(Name, "org.hypermedea.ThingArtifact", [Thing], ArtId);
-    focus(ArtId);
-    // set credentials to access the Thing (DX10 workshop of the IT'm factory)
-    ?credentials(SimuName,SimuPasswd);
-    setAuthCredentials(SimuName, SimuPasswd)[artifact_id(ArtId)] ;
 
     ?locationOfInputMaterial(Name,CIX,CIY,CIZ);
     ?locationOfOutputProduct(Name,COX,COY,COZ);
-    !getDescription(Thing);
+    !getDescription(Name);
     !testStatus(Name);
 
     // Not necessary to get all of them regularly. 

@@ -46,18 +46,11 @@ thing(boschApas,Thing) :-
     thing(Name,Thing) 
     <-
     .print("Found suitable RobotArm : ", Thing) ;
-    // To also execute the requests, remove the second init parameter (dryRun flag).
-    // When dryRun is set to true, the requests are printed (but not executed).
-    makeArtifact(Name, "org.hypermedea.ThingArtifact", [Thing], ArtId);
-    focus(ArtId);
-    // set credentials to access the Thing (DX10 workshop of the IT'm factory)
-    ?credentials(SimuName,SimuPasswd);
-    setAuthCredentials(SimuName, SimuPasswd)[artifact_id(ArtId)] ;
 
     ?has_origin_coordinates(Name,CX,CY,CZ);
     .println(Thing, " has origin coordinates ",CX," ",CY," ",CZ);
 
-    !getDescription(Thing);
+    !getDescription(Name);
 
     !testStatus(Name);
 
@@ -120,24 +113,6 @@ thing(boschApas,Thing) :-
     <-
     !observeProperty(Name,PName,Timer);
     .println("observing ",PName," on ",Thing);
-  .
-
-// HORS HACKATHON
-+?inMovement(Name,Value) :
-    thing(Name,Thing)
-    & in_movement_property(Thing,PName)
-    <-
-    readProperty(PName,Value)[artifact_name(Name)];
-    .println(Name,"---> ",Thing," current in Movement ",Value," for ",PName);
-  .
-
-
-+?grasping(Name,Value) :
-    thing(Name,Thing)
-    & grasping_property(Thing,PName)
-    <-
-    readProperty(PName,Value)[artifact_name(Name)];
-    .println(Name,"---> ",Thing," current grasping ",Value," for ",FullName," ",PName);
   .
 
 +propertyValue("inMovement", X) :

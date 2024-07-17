@@ -251,12 +251,12 @@ grasping_property(Thing,PName) :-
 
 +!observeProperty(Name,PName,Timer) :
     thing(Name,Thing) <-
-    readProperty(PName)[artifact_name(Name)];
+    !readProperty(PName,_)[artifact_name(Name)];
     .wait(Timer) ;
     !!observeProperty(Name,PName,Timer) ;
   .
 
-+!getDescription(Thing) <-
++!getDescription(Name) : thing(Name,Thing) <-
     .println("----------------------------------------------------");
     .findall(AN,has_action_affordance(Thing, AA) &  name(AA, AN),AL);
     .println(Thing," has the following action affordances ",AL);
@@ -267,8 +267,76 @@ grasping_property(Thing,PName) :-
     .println("----------------------------------------------------");
   .
 
-//---------------hotfix; to remove once fixed upstream-------------------
++!readProperty(PName, Value)[artifact_name(Name)] :
+  thing(Name, Thing)
+  & has_property_affordance(Thing, Property)
+  & name(Property,PName)
+  & has_form(Property, Form)
+  & has_target(Form, URI)
+  <-
+    !prepareForm(F);
+    get(URI, F);
+    ?(json(Value)[source(URI)]);
+    !updatePropertyValue(Name, PName, Value);
+  .
 
-+!tryDontCatch(Goal) : not retrying(Goal)  <- Goal .
--!tryDontCatch(Goal) : not retrying(Goal) <- +retrying(Goal) ; !tryDontCatch(Goal) .
-+!tryDontCatch(Goal) : retrying(Goal) <- -retrying(Goal) .
++!updatePropertyValue(Name, PName, Value) :
+  not propertyValue(PName,_)[artifact_name(_,Name)]
+  <-
+    // add statement for the first time
+    +propertyValue(PName, Value)[artifact_name("",Name)];
+  .
+
++!updatePropertyValue(Name, PName, Value) :
+  propertyValue(PName, PreviousValue)[artifact_name(Any,Name)]
+  & PreviousValue \== Value
+  <-
+    // update statement with new value, if changed
+    -+propertyValue(PName, Value)[artifact_name(Any,Name)];
+  .
+
++!updatePropertyValue(Name, PName, Value)
+  // otherwise, do nothing (statement already there)
+  .
+
++!writeProperty(PName, Value)[artifact_name(Name)] :
+  thing(Name, Thing)
+  & has_property_affordance(Thing, Property)
+  & name(Property,PName)
+  & has_form(Property, Form)
+  & has_target(Form, URI)
+  <-
+    !prepareForm(F) ;
+    put(URI, [json(Value)], F) ;
+  .
+
++!invokeAction(ActionName)[artifact_name(Name)] :
+  thing(Name, Thing)
+  & has_action_affordance(Thing, Action)
+  & name(Action,ActionName)
+  & has_form(Action, Form)
+  & has_target(Form, URI)
+  <-
+    !prepareForm(F) ;
+    post(URI, [], F) ;
+  .
+
++!invokeAction(ActionName, Input)[artifact_name(Name)] :
+  thing(Name, Thing)
+  & has_action_affordance(Thing, Action)
+  & name(Action,ActionName)
+  & has_form(Action, Form)
+  & has_target(Form, URI)
+  <-
+    !prepareForm(F) ;
+    post(URI, [json(Input)], F) ;
+  .
+
++!prepareForm(F) : credentials(User, Pw)
+    <-
+    h.basic_auth_credentials(User, Pw, H) ;
+    F = [kv("urn:hypermedea:http:authorization", H)] .
+
++!prepareForm([])
+    <-
+    .print("Warning: interacting with Things requires HTTP basic authentication but no credentials found.") .

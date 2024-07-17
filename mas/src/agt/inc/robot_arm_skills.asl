@@ -41,7 +41,7 @@ has_origin_coordinates(Name,ValueX, ValueY, ValueZ) :-
     thing(Name,Thing)
     <-
     ?reset_action(Thing,ActionName);
-    invokeAction(ActionName)[artifact_name(Name)];
+    !invokeAction(ActionName)[artifact_name(Name)];
     .println("invoked operation ",ActionName," on ",Thing);
   .
 
@@ -57,7 +57,7 @@ has_origin_coordinates(Name,ValueX, ValueY, ValueZ) :-
     thing(Name,Thing)
     & release_action(Thing,ActionName)
     <-
-    invokeAction(ActionName)[artifact_name(Name)];
+    !invokeAction(ActionName)[artifact_name(Name)];
     .println("invoked operation ",ActionName," with parameter ",At," on ",Thing);
   .
 
@@ -67,7 +67,7 @@ has_origin_coordinates(Name,ValueX, ValueY, ValueZ) :-
     & grasp_action(Thing,ActionName)
     <-
     .println("invoking operation ",ActionName," with parameter ",At," on ",Thing);
-    invokeAction(ActionName)[artifact_name(Name)];
+    !invokeAction(ActionName)[artifact_name(Name)];
     .println("invoked operation ",ActionName," with parameter ",At," on ",Thing);
   .
 
@@ -86,6 +86,6 @@ has_origin_coordinates(Name,ValueX, ValueY, ValueZ) :-
     thing(Name,Thing)
     & move_action(Thing,ActionName)
     <-
-    invokeAction(ActionName,json([kv(x,X),kv(y,Y),kv(z,Z)]))[artifact_name(Name)];
+    !invokeAction(ActionName,[kv(x,X),kv(y,Y),kv(z,Z)])[artifact_name(Name)];
     .println("invoked operation ",ActionName," with parameter X ",X," Y ",Y," Z ",Z," on ",Thing);
   .

@@ -41,24 +41,11 @@ location_packaging([3.2,0,1]). // relative position of packaging workshop
     & api_key(Token)
     <-
     .print("Found suitable RobotArm : ", Thing) ;
-    makeArtifact(Name, "org.hypermedea.ThingArtifact", [Thing], ArtId);
-    // To initialize the ThingArtifact in a dryRun mode (requests are printed but not executed)
-    // makeArtifact(Name, "org.hypermedea.ThingArtifact", [Thing, false], ArtId);
-    // .println("PAY ATTENTION: I am in dryRun=True mode");
-    // When no parameter, dryRun is false by default.
-    focus(ArtId);
-
-     // set credentials to access the Thing
-    ?credentials(SimuName,SimuPasswd);
-    setAuthCredentials(SimuName, SimuPasswd)[artifact_id(ArtId)] ;
 
     ?has_origin_coordinates(Name,CX,CY,CZ);
     .println(Thing, " has origin coordinates ",CX," ",CY," ",CZ);
 
-    !getDescription(Thing);
-
-    // Set API key is a call of the operation setAPIKey on the ThingArtifact
-    setAPIKey(Token)[artifact_name(Name)];
+    !getDescription(Name);
 
     // goal of potting Items using the thing
     !potItems(Name);

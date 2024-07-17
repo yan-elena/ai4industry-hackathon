@@ -31,7 +31,7 @@
     thing(Name,Thing)
     & stop_in_emergency_action(Thing,ActionName)
     <-
-    invokeAction(ActionName)[artifact_name(Name)];
+    !invokeAction(ActionName)[artifact_name(Name)];
     .println("acted on ",Name," to act on ",Thing," with operation ",ActionName);
   .
 
@@ -40,7 +40,7 @@
     thing(Name,Thing)
     & conveyor_speed_property(Thing,PName)
     <-
-    writeProperty(PName,Value)[artifact_name(Name)];
+    !writeProperty(PName,Value)[artifact_name(Name)];
     .println("acted on ",Name," to request ",Thing," to change property ", PName, " with value ",Value);
   .
 
@@ -51,7 +51,7 @@
     thing(Name,Thing)
     & stack_light_status_property(Thing,PName)
     <-
-    readProperty(PName,Value)[artifact_name(Name)];
+    !readProperty(PName,Value)[artifact_name(Name)];
     .println("acted on ",Name," to request ",Thing," for current value of ",PName," : ", Value);
   .
 // Plan for requesting the value of the conveyorSpeed property affordance
@@ -59,7 +59,7 @@
     thing(Name,Thing)
     & conveyor_speed_property(Thing,PName)
     <-
-    readProperty(PName,Value)[artifact_name(Name)];
+    !readProperty(PName,Value)[artifact_name(Name)];
     .println("acted on ",Name," to request ",Thing," for current value of ",PName," : ", Value);
   .
 
@@ -68,7 +68,7 @@
     thing(Name,Thing)
     & package_buffer_property(Thing,PName)
     <-
-    readProperty(PName,Value)[artifact_name(Name)];
+    !readProperty(PName,Value)[artifact_name(Name)];
     .println("acted on ",Name," to request ",Thing," for current value of ",PName," : ", Value);
   .
 // Plan for requesting the value of the opticalSensorPackage property affordance
@@ -76,7 +76,7 @@
     thing(Name,Thing)
     & optical_sensor_status_property(Thing,PName)
     <-
-    readProperty(PName,Value)[artifact_name(Name)];
+    !readProperty(PName,Value)[artifact_name(Name)];
     .println("acted on ",Name," to request ",Thing," for current value of ",PName," : ", Value);
   .
 
@@ -85,7 +85,7 @@
     thing(Name,Thing) &
     optical_sensor_container_1(Thing,PName)
     <-
-    readProperty(PName,Value)[artifact_name(Name)];
+    !readProperty(PName,Value)[artifact_name(Name)];
     .println("acted on ",Name," to request ",Thing," for current value of ",PName," : ", Value);
   .
 
@@ -94,7 +94,7 @@
     thing(Name,Thing)
     & optical_sensor_container_2(Thing,PName)
     <-
-    readProperty(PName,Value)[artifact_name(Name)];
+    !readProperty(PName,Value)[artifact_name(Name)];
     .println("acted on ",Name," to request ",Thing," for current value of ",PName," : ", Value);
   .
 
@@ -103,7 +103,7 @@
     thing(Name,Thing)
     & conveyor_head_status_property(Thing,PName)
     <-
-    readProperty(PName,Value)[artifact_name(Name)];
+    !readProperty(PName,Value)[artifact_name(Name)];
     .println("acted on ",Name," to request ",Thing," for current value of ",PName," : ", Value);
   .
 
