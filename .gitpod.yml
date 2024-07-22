@@ -1,5 +1,5 @@
 tasks:
-  - before: yes | sdk install java 17.0.7-tem && npm install -g --unsafe-perm node-red
+  - before: yes | sdk install java 17.0.7-tem && npm install -g --unsafe-perm node-red && cd /home/gitpod && mkdir .node-red && npm install serialport@9.2.8 && npm install nan
 
 vscode:
   extensions:
