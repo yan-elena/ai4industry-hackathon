@@ -1,5 +1,5 @@
-/* 
-vl10_agent controlling the Storage rack 
+/*
+vl10_agent controlling the Storage rack
 It acts on a thing described by: https://ci.mines-stetienne.fr/kg/itmfactory/vl10
 It has:
 - the following action affordances:
@@ -83,7 +83,26 @@ thing(storageRack,Thing) :-
     & Z < 5
     <-
     .println("is conveying.");
+
+    !pickItem(Name, [X,Z]);
+
+    !update_position(X, Z);
+    ?position(X1, Z1);
+    .print("--> Updates position: ", X1, Z1);
+
+    .wait(100);
+    !!run(Name)
   .
+
+
++!update_position(X, Z) : X<4
+  <- -+position(X+1, Z).
+
++!update_position(X, Z) : X==4
+  <- -+position(0, Z + 1).
+
++!update_position(X, Z) : true
+  <- .print("Finish").
 
 // TO BE COMPLETED ....
 

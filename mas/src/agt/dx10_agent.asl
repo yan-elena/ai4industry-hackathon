@@ -1,5 +1,5 @@
-/* 
-dx10_agent controlling the Filling Workshop. 
+/*
+dx10_agent controlling the Filling Workshop.
 It acts on a thing described by: https://ci.mines-stetienne.fr/kg/itmfactory/dx10
 It has:
 - the following action affordances:
@@ -61,8 +61,8 @@ thing(fillingWorkshop,Thing) :-
     //  ?locationOfOutputProduct(Name,COX,COY,COZ);
     !getDescription(Name);
     !testStatus(Name);
-    
-    // Not necessary to get all of them regularly. 
+
+    // Not necessary to get all of them regularly.
     // Choose and comment, otherwise there is a risk of
     // consuming all the computing resources
     !observeTankLevel(Name);
@@ -72,13 +72,17 @@ thing(fillingWorkshop,Thing) :-
     !observeMagneticValveStatus(Name);
     !observePositionX(Name);
     !observeStackLightStatus(Name);
-    
+
     ?conveyorSpeed(Name,IS);
     if (IS == 0) {
       !changeConveyorSpeed(Name,0.5);
     }
-    
+
     !fillItems(Name);
+
+    ?conveyorHeadStatus(Name,Value);
+    .print("------Value: ", Value);
+    !notifyFillStatus(Name);
 
     !testStatus(Name);
   .
@@ -98,6 +102,14 @@ thing(fillingWorkshop,Thing) :-
   .
 
 // TO BE COMPLETED ....
++!notifyFillStatus(Name)
+  <-
+    .print("----notifyFillStatus--------");
+    ?conveyorHeadStatus(Name,Value);
+    if (Value == true) {
+      .send(apas_agent, signal, startCarry);
+    }.
+
 
 { include("inc/dx10_skills.asl") }
 { include("inc/common.asl") }

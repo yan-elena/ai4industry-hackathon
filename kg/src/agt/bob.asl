@@ -10,6 +10,7 @@ doing so, we may introduce name conflicts though. For instance,
 are quite different from each other. The latter is more general than the former.
 That is why everything is a URI, in RDF.
 */
+credentials("simu2", "simu2").
 type(Individual, Class)
     :-
     rdf(
@@ -188,7 +189,27 @@ system, the next part of the summer school.
 */
 +!start
     <-
-    .print("I'm not doing anything. Shouldn't I crawl the IT'm Factory KG?") .
+    //STEP1
+    !crawl("https://ci.mines-stetienne.fr/kg/itmfactory/");
+
+    //STEP2
+    !crawl("https://ai5.academy.metaphacts.cloud/resource/?uri=https%3A%2F%2Fci.mines-stetienne.fr%2Fsimu%2FpackagingWorkshop%2Fproperties%2FconveyorSpeed");
+
+    //STEP3
+    !crawl("https://ci.mines-stetienne.fr/kg/itmfactory/vl10#this");
+    !listThings;
+
+    !listPropertyAffordances(TType);
+
+    .print("Read conveyor speed");
+    !readProperty(TType, conveyorSpeed);
+
+    .print("Set the conveyor speed to 0.5...");
+    !writeProperty(TType, conveyorSpeed, 0.5);
+
+    .print("Invoke action...");
+    !invokeAction(TType, moveFromToAction, [0,0]);
+    .
 
 !start . // entry point of the agent's reasoning cycle
 

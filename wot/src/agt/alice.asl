@@ -6,9 +6,8 @@ Alice is an agent. Its "cognitive" state is composed of
 The following line initializes the agent's state with a belief that gives what 
 credentials it should use to interact with the simulated manufacturing line.
 
-TODO: replace N with your group number (to obtain e.g. "simu1", "simu2", etc).
 */
-credentials("simuN", "simuN") .
+credentials("simu2", "simu2") .
 
 /*
 Some beliefs may be derived from others, given logical rules expressed in a
@@ -109,7 +108,19 @@ in the MAS lecture.
 */
 +!start
     <-
-    .print("I'm not doing anything. Add some actions to this plan!") .
+    !getTD("https://ci.mines-stetienne.fr/simu/storageRack/");
+    ?thing(T);
+    !listProperties(T);
+
+    .print("Read property...");
+    !readProperty(T, conveyorSpeed);
+
+    .print("Set the conveyor speed to 0.5...");
+    !writeProperty(T, conveyorSpeed, 0.5);
+
+    .print("Invoke action...");
+    !invokeAction(T, pickItem, [0,0]);
+     .
 
 !start . // entry point of the agent's reasoning cycle
 

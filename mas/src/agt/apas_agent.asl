@@ -1,5 +1,5 @@
-/* 
-apas_agent controlling the Robot Arm. 
+/*
+apas_agent controlling the Robot Arm.
 It acts on a thing described by: https://ci.mines-stetienne.fr/kg/itmfactory/bosch-apas#this
 It has:
 - the following action affordances:
@@ -42,8 +42,8 @@ thing(boschApas,Thing) :-
     !!run(Name);
   .
 
-+!run(Name) : 
-    thing(Name,Thing) 
++!run(Name) :
+    thing(Name,Thing)
     <-
     .print("Found suitable RobotArm : ", Thing) ;
 
@@ -52,17 +52,17 @@ thing(boschApas,Thing) :-
 
     !getDescription(Name);
 
-    !testStatus(Name);
+    //!testStatus(Name);
 
-    // Not necessary to get all of them regularly. 
+    // Not necessary to get all of them regularly.
     // Choose and comment, otherwise there is a risk of
     // consuming all the computing resources
     !observeInMovement(Name);
     !observeGrasping(Name);
 
-    !potItems(Name);
+    //!potItems(Name);
 
-    !testStatus(Name);
+    //!testStatus(Name);
   .
 
 +!run(Name) :
@@ -90,11 +90,22 @@ thing(boschApas,Thing) :-
     !!potItems(Name);
   .
 
++startCarry : thing(Name,Thing)
+  <-
+    .print("----startCarry--------");
+    !potItems(Name);
+    !testStatus(Name).
+
 // Fake plan. Adapt.
 +!carry(Name,From,To) :
     true
     <-
     .println("carrying a pot from ",From," to ",To);
+
+    !move(Name, From);
+    !grasp(Name, From);
+    !move(Name, To);
+    !release(Name, To);
   .
 
 +!observeInMovement(Name) :
